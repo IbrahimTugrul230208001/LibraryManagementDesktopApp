@@ -1,0 +1,14 @@
+C:\Users\admin\source\repos\LibraryManagementSystem\Library.DataAccess\bin\Debug\Library.DataAccess.dll.config
+C:\Users\admin\source\repos\LibraryManagementSystem\Library.DataAccess\bin\Debug\Library.DataAccess.dll
+C:\Users\admin\source\repos\LibraryManagementSystem\Library.DataAccess\bin\Debug\Library.DataAccess.pdb
+C:\Users\admin\source\repos\LibraryManagementSystem\Library.DataAccess\bin\Debug\EntityFramework.dll
+C:\Users\admin\source\repos\LibraryManagementSystem\Library.DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\admin\source\repos\LibraryManagementSystem\Library.DataAccess\bin\Debug\Library.Entity.dll
+C:\Users\admin\source\repos\LibraryManagementSystem\Library.DataAccess\bin\Debug\Library.Entity.pdb
+C:\Users\admin\source\repos\LibraryManagementSystem\Library.DataAccess\bin\Debug\EntityFramework.xml
+C:\Users\admin\source\repos\LibraryManagementSystem\Library.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\admin\source\repos\LibraryManagementSystem\Library.DataAccess\obj\Debug\Library.DataAccess.csproj.AssemblyReference.cache
+C:\Users\admin\source\repos\LibraryManagementSystem\Library.DataAccess\obj\Debug\Library.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\admin\source\repos\LibraryManagementSystem\Library.DataAccess\obj\Debug\Library..1A4F41CD.Up2Date
+C:\Users\admin\source\repos\LibraryManagementSystem\Library.DataAccess\obj\Debug\Library.DataAccess.dll
+C:\Users\admin\source\repos\LibraryManagementSystem\Library.DataAccess\obj\Debug\Library.DataAccess.pdb

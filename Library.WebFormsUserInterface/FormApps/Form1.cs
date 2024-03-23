@@ -89,42 +89,62 @@ namespace LibraryManagementSystem
 
         private void LibraryButton_Click(object sender, EventArgs e)
         {
-            LibraryButton.Font = new Font(LibraryButton.Font, FontStyle.Underline);
-            ShopPlanButton.Font = new Font(ShopPlanButton.Font, FontStyle.Regular);
-            ReadingPlanButton.Font = new Font(ReadingPlanButton.Font, FontStyle.Regular);
-
+            LibraryButton.BackColor = Color.DimGray;
+            LibraryPanelBack.BackColor = Color.White;
+            SetShopPlanColorsToDefault();
+            SetReadingPlanColorsToDefault();
             LibraryPanel.Controls.Clear();
             LibraryPage libraryPage = new LibraryPage(_framework);
             LibraryPanel.Controls.Add(libraryPage);
+
         }
 
         private void ShopPlanButton_Click(object sender, EventArgs e)
         {
-            LibraryButton.Font = new Font(LibraryButton.Font, FontStyle.Regular);
-            ShopPlanButton.Font = new Font(ShopPlanButton.Font, FontStyle.Underline);
-            ReadingPlanButton.Font = new Font(ReadingPlanButton.Font, FontStyle.Regular);
-
+            ShopPlanPanelBack.BackColor = Color.White;
+            ShopPlanButton.BackColor = Color.DimGray;
+            SetLibraryColorsToDefault();
+            SetReadingPlanColorsToDefault();
             LibraryPanel.Controls.Clear();
             BookShopListPage bookShopListPage = new BookShopListPage(_framework);
             LibraryPanel.Controls.Add(bookShopListPage);
+
         }
 
         private void ReadingPlanButton_Click(object sender, EventArgs e)
         {
-            LibraryButton.Font = new Font(LibraryButton.Font, FontStyle.Regular);
-            ShopPlanButton.Font = new Font(ShopPlanButton.Font, FontStyle.Regular);
-            ReadingPlanButton.Font = new Font(ReadingPlanButton.Font, FontStyle.Underline);
-
+            ReadingPlanButton.BackColor = Color.DimGray;
+            ReadingPlanPanelBack.BackColor = Color.White;
+            SetLibraryColorsToDefault();
+            SetShopPlanColorsToDefault();
             LibraryPanel.Controls.Clear();
             ReadingPlan readingPlan = new ReadingPlan(_framework);
             LibraryPanel.Controls.Add(readingPlan);
+        }
+        
+        private void SetLibraryColorsToDefault()
+        {
+            LibraryButton.BackColor = Color.Black;
+            LibraryPanelBack.BackColor = Color.Black;
+        }
+
+        private void SetShopPlanColorsToDefault()
+        {
+            ShopPlanButton.BackColor = Color.Black;
+            ShopPlanPanelBack.BackColor = Color.Black;
+        }
+
+        private void SetReadingPlanColorsToDefault()
+        {
+            ReadingPlanButton.BackColor = Color.Black;
+            ReadingPlanPanelBack.BackColor = Color.Black;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             SetMainMenuData();
         }
-
+        
         private void SetMainMenuData()
         {
             progressBarCompletionRate.Value = (int)Library.WebFormsUserInterface.Properties.Settings.Default.SelectedCompletionRate;
