@@ -1,12 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\admin\\source\\repos\\LibraryManagementSystem\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{CA5C13DB-548E-4749-81DB-A79534EFB930}|Library.WebFormsUserInterface\\Library.WebFormsUserInterface.csproj|c:\\users\\admin\\source\\repos\\librarymanagementsystem\\library.webformsuserinterface\\formapps\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{CA5C13DB-548E-4749-81DB-A79534EFB930}|Library.WebFormsUserInterface\\Library.WebFormsUserInterface.csproj|solutionrelative:library.webformsuserinterface\\formapps\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -14,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 267,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -35,18 +30,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form1.cs [Tasar\u0131m]",
-              "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\LibraryManagementSystem\\Library.WebFormsUserInterface\\FormApps\\Form1.cs",
-              "RelativeDocumentMoniker": "Library.WebFormsUserInterface\\FormApps\\Form1.cs",
-              "ToolTip": "C:\\Users\\admin\\source\\repos\\LibraryManagementSystem\\Library.WebFormsUserInterface\\FormApps\\Form1.cs [Tasar\u0131m]",
-              "RelativeToolTip": "Library.WebFormsUserInterface\\FormApps\\Form1.cs [Tasar\u0131m]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-26T13:11:30.744Z",
-              "EditorCaption": " [Tasar\u0131m]"
             }
           ]
         }

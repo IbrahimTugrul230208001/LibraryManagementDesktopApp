@@ -151,6 +151,11 @@ namespace Library.Business.Concrete
 
                 _LibraryDal.DeletePlannedBookList(plannedBook);
             }
+
+            public void AddNewUser(UserAccount userAccount)
+            {
+                _LibraryDal.AddNewUser(userAccount);
+            }
         }
     }
 

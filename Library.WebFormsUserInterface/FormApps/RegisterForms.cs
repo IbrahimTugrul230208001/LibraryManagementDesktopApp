@@ -34,8 +34,6 @@ namespace Library.WebFormsUserInterface.FormApps
             {
                 MessageBox.Show("Password confirmation is not valid. Check your password again.");
             }
-
-
         }
 
         private void ClearTextBoxes()
