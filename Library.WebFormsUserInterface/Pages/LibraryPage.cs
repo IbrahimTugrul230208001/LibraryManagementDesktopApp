@@ -41,12 +41,10 @@ namespace Library.WebFormsUserInterface.FormApps
             if (framework == "ADONET")
             {
                 _libraryManager = new LibraryManager(new ADONET());
-                LabelFramework.Text += "ADO.NET";
             }
             else if (framework == "EntityFramework")
             {
                 _libraryManager = new LibraryManager(new EntityFramework());
-                LabelFramework.Text += "EntityFramework";
             }
             else
             {

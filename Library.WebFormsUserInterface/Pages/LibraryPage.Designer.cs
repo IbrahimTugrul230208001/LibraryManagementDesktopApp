@@ -45,7 +45,6 @@
             this.tbAddName = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
-            this.LabelFramework = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cbxCategories = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -79,7 +78,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(35, 15);
+            this.label15.Location = new System.Drawing.Point(38, 21);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(242, 13);
             this.label15.TabIndex = 66;
@@ -92,7 +91,7 @@
             this.DeleteButton.FlatAppearance.BorderSize = 0;
             this.DeleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DeleteButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.DeleteButton.Location = new System.Drawing.Point(870, 10);
+            this.DeleteButton.Location = new System.Drawing.Point(873, 16);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(120, 23);
             this.DeleteButton.TabIndex = 65;
@@ -104,7 +103,7 @@
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlDark;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(327, 37);
+            this.dataGridView1.Location = new System.Drawing.Point(330, 43);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(699, 265);
             this.dataGridView1.TabIndex = 58;
@@ -123,7 +122,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.tbAddName);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Location = new System.Drawing.Point(678, 419);
+            this.groupBox1.Location = new System.Drawing.Point(681, 425);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(348, 274);
             this.groupBox1.TabIndex = 60;
@@ -235,7 +234,7 @@
             this.circularProgressBar1.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.circularProgressBar1.InnerMargin = 2;
             this.circularProgressBar1.InnerWidth = -1;
-            this.circularProgressBar1.Location = new System.Drawing.Point(28, 37);
+            this.circularProgressBar1.Location = new System.Drawing.Point(31, 43);
             this.circularProgressBar1.MarqueeAnimationSpeed = 2000;
             this.circularProgressBar1.Name = "circularProgressBar1";
             this.circularProgressBar1.OuterColor = System.Drawing.Color.LightGray;
@@ -256,15 +255,6 @@
             this.circularProgressBar1.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
             this.circularProgressBar1.Value = 68;
             // 
-            // LabelFramework
-            // 
-            this.LabelFramework.AutoSize = true;
-            this.LabelFramework.Location = new System.Drawing.Point(326, 10);
-            this.LabelFramework.Name = "LabelFramework";
-            this.LabelFramework.Size = new System.Drawing.Size(110, 13);
-            this.LabelFramework.TabIndex = 63;
-            this.LabelFramework.Text = "Selected Framework: ";
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.cbxCategories);
@@ -273,7 +263,7 @@
             this.groupBox3.Controls.Add(this.tbSearchByAuthor);
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.tbSearchByName);
-            this.groupBox3.Location = new System.Drawing.Point(327, 308);
+            this.groupBox3.Location = new System.Drawing.Point(330, 314);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(699, 101);
             this.groupBox3.TabIndex = 62;
@@ -352,7 +342,7 @@
             this.groupBox4.Controls.Add(this.label13);
             this.groupBox4.Controls.Add(this.tbUpdateName);
             this.groupBox4.Controls.Add(this.label14);
-            this.groupBox4.Location = new System.Drawing.Point(329, 419);
+            this.groupBox4.Location = new System.Drawing.Point(332, 425);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(329, 274);
             this.groupBox4.TabIndex = 59;
@@ -457,7 +447,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.panelCategoryCounts);
-            this.groupBox2.Location = new System.Drawing.Point(21, 348);
+            this.groupBox2.Location = new System.Drawing.Point(24, 354);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(291, 265);
             this.groupBox2.TabIndex = 61;
@@ -479,7 +469,7 @@
             this.RefreshButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.RefreshButton.FlatAppearance.BorderSize = 0;
             this.RefreshButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.RefreshButton.Location = new System.Drawing.Point(996, 3);
+            this.RefreshButton.Location = new System.Drawing.Point(999, 9);
             this.RefreshButton.Name = "RefreshButton";
             this.RefreshButton.Size = new System.Drawing.Size(30, 30);
             this.RefreshButton.TabIndex = 67;
@@ -493,7 +483,7 @@
             this.CompleteBooksButton.FlatAppearance.BorderSize = 0;
             this.CompleteBooksButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CompleteBooksButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.CompleteBooksButton.Location = new System.Drawing.Point(705, 10);
+            this.CompleteBooksButton.Location = new System.Drawing.Point(330, 14);
             this.CompleteBooksButton.Name = "CompleteBooksButton";
             this.CompleteBooksButton.Size = new System.Drawing.Size(159, 23);
             this.CompleteBooksButton.TabIndex = 68;
@@ -512,12 +502,11 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.circularProgressBar1);
-            this.Controls.Add(this.LabelFramework);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
             this.Name = "LibraryPage";
-            this.Size = new System.Drawing.Size(1044, 713);
+            this.Size = new System.Drawing.Size(1060, 719);
             this.Load += new System.EventHandler(this.LibraryPage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -550,7 +539,6 @@
         private System.Windows.Forms.TextBox tbAddName;
         private System.Windows.Forms.Label label6;
         private CircularProgressBar.CircularProgressBar circularProgressBar1;
-        private System.Windows.Forms.Label LabelFramework;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox cbxCategories;
         private System.Windows.Forms.Label label8;

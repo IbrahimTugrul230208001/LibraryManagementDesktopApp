@@ -44,6 +44,7 @@
     <Compile Include="Concrete\BookShopList.cs" />
     <Compile Include="Concrete\Libraries.cs" />
     <Compile Include="Concrete\PlannedBook.cs" />
+    <Compile Include="Concrete\UserAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

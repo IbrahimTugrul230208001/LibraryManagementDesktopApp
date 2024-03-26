@@ -147,6 +147,7 @@ namespace LibraryManagementSystem
         
         private void SetMainMenuData()
         {
+            SelectedFrameworkLabel.Text += _framework;
             progressBarCompletionRate.Value = (int)Library.WebFormsUserInterface.Properties.Settings.Default.SelectedCompletionRate;
             HelloLabel.Text += _userName + "!";
             NameOfBookLabel.Text += Library.WebFormsUserInterface.Properties.Settings.Default.SelectedBookName;

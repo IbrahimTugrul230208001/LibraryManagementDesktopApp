@@ -478,6 +478,16 @@ namespace Library.DataAccess.Concrete.ADONET
             command.Parameters.AddWithValue("@Id", plannedBook.Id);
             command.ExecuteNonQuery();
             _connection.Close();
-        }      
+        }   
+        
+        public void AddNewUser(UserAccount userAccount)
+        {
+            ConnectionControl();
+            SqlCommand command = new SqlCommand("Insert INTO UserAccounts Values (@UserName,@Password)", _connection);
+            command.Parameters.AddWithValue("@UserName",userAccount.UserName);
+            command.Parameters.AddWithValue("@Password", userAccount.Password);
+            command.ExecuteNonQuery();
+            _connection.Close();
+        }
     }
 }

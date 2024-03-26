@@ -40,3 +40,4 @@ C:\Users\admin\source\repos\LibraryManagementSystem\Library.WebFormsUserInterfac
 C:\Users\admin\source\repos\LibraryManagementSystem\Library.WebFormsUserInterface\obj\Debug\Library..D9D0D659.Up2Date
 C:\Users\admin\source\repos\LibraryManagementSystem\Library.WebFormsUserInterface\obj\Debug\Library.WebFormsUserInterface.exe
 C:\Users\admin\source\repos\LibraryManagementSystem\Library.WebFormsUserInterface\obj\Debug\Library.WebFormsUserInterface.pdb
+C:\Users\admin\source\repos\LibraryManagementSystem\Library.WebFormsUserInterface\obj\Debug\Library.WebFormsUserInterface.FormApps.RegisterForms.resources

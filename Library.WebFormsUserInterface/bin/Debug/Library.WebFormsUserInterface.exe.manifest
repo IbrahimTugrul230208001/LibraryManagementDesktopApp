@@ -121,43 +121,43 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>tYYvxMCGC1Byqbik8YRbV1PGBL0Mu8dTiXmviEPya2A=</dsig:DigestValue>
+        <dsig:DigestValue>zBWRNBPWwcNG0ITNtsn010K4x9vgBWJUGxNUtX8ZBfw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Library.DataAccess.dll" size="24576">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Library.DataAccess.dll" size="25088">
       <assemblyIdentity name="Library.DataAccess" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>byUxil1hBG0c/d3r/BTD3bso4JwogRVbWA7Hi+1JGDM=</dsig:DigestValue>
+        <dsig:DigestValue>1ZmacVqibj9GMR5Vmv/7flf/cCCWqSmaYJrbK8xakVo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Library.Entity.dll" size="6656">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Library.Entity.dll" size="7168">
       <assemblyIdentity name="Library.Entity" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>TwAEX2TujN8eVmXp91fyksehfMVL+1Fr5DL5PykBRSE=</dsig:DigestValue>
+        <dsig:DigestValue>acxBR5RBSHYdn8x2PDJQzLsiOOC+/aF4ISgFHaZ5Fc4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Library.WebFormsUserInterface.exe" size="259552">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Library.WebFormsUserInterface.exe" size="266720">
       <assemblyIdentity name="Library.WebFormsUserInterface" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>qFEuF7Pc4OkUTtl9vCl6thGozUcyaiGyU4zbksfYHYc=</dsig:DigestValue>
+        <dsig:DigestValue>9F5Vi4hXLlrBBJHStzUFzfKAvlVr+XbZ7UltSpjgCl0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

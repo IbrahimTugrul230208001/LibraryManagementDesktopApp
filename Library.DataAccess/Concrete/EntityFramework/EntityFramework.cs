@@ -225,5 +225,14 @@ namespace Library.DataAccess.Abstract.EntityFramework
                 context.SaveChanges();
             }
         }
+
+        public void AddNewUser(UserAccount userAccount)
+        {
+         using(LibraryContext context =new LibraryContext())
+            {
+                context.UserAccounts.Add(userAccount);
+                context.SaveChanges();
+            }
+        }
     }
 }

@@ -474,7 +474,7 @@
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox7);
             this.Name = "BookShopListPage";
-            this.Size = new System.Drawing.Size(1044, 713);
+            this.Size = new System.Drawing.Size(1060, 719);
             this.Load += new System.EventHandler(this.BookShopListPage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox3.ResumeLayout(false);

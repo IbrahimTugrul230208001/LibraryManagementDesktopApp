@@ -32,5 +32,6 @@ namespace Library.DataAccess.Abstract
         void AddBookToPlannedBooksList(PlannedBook plannedBook);
         void UpdatePlannedBookList(PlannedBook plannedBook);
         void DeletePlannedBookList(PlannedBook plannedBook);
+        void AddNewUser(UserAccount userAccount);
     }
 }

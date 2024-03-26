@@ -23,10 +23,9 @@ namespace Library.WebFormsUserInterface
             passwordScreen.ShowDialog();
             string selectedFramework = passwordScreen.Framework;
             string selectedUserName = passwordScreen._userName;
-            Form1 form1 = new Form1(selectedFramework,selectedUserName);
-            Application.Run(form1);        
+            Form1 form1 = new Form1(selectedFramework, selectedUserName);
+            Application.Run(form1);
         }
-
-        }
+    }
     
 }

@@ -593,7 +593,7 @@
             this.Controls.Add(this.cbxSwitchColor);
             this.Controls.Add(this.circularProgressBar1);
             this.Name = "ReadingPlan";
-            this.Size = new System.Drawing.Size(1044, 713);
+            this.Size = new System.Drawing.Size(1060, 719);
             this.Load += new System.EventHandler(this.ReadingPlan_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);

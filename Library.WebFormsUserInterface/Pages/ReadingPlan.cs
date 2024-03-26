@@ -199,6 +199,14 @@ namespace Library.WebFormsUserInterface.FormApps
             });
 
             MessageBox.Show("The Book has Been Updated!");
+            int completedPages = Convert.ToInt32(tbUpdateReadPages.Text);
+            int totalOfPages = Convert.ToInt32(tbUpdateTotalOfPages.Text);
+            decimal completionRateDecimal = (decimal)completedPages / totalOfPages * 100;
+            int completionRateInt = (int)completionRateDecimal;
+            circularProgressBar1.Value = completionRateInt;
+            circularProgressBar1.Text = completionRateDecimal.ToString("0.00", CultureInfo.InvariantCulture);
+            SaveCircularProgressBarData(circularProgressBar1.Value, circularProgressBar1.Text);
+            UpdateCurrentlyReadingBookUI(tbUpdateName.Text, Convert.ToString(completedPages), Convert.ToString(totalOfPages), completionRateDecimal);
             ClearTextBoxes();
             LoadPlannedBooksToRead();
         }
