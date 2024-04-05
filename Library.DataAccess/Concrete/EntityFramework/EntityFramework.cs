@@ -11,6 +11,21 @@ namespace Library.DataAccess.Abstract.EntityFramework
 {
     public class EntityFramework : ILibraryDal
     {
+        private string _userName;
+        public EntityFramework(string userName)
+        {
+            _userName = userName;
+        }
+
+        public List<Libraries> GetAll()
+        {
+
+            using (LibraryContext context = new LibraryContext())
+            {
+                return context.Libraries.Where(p => p.UserName == _userName).ToList();
+            }
+        }
+
         public void Add(Libraries library)
         {
             using(LibraryContext context = new LibraryContext())
@@ -35,7 +50,7 @@ namespace Library.DataAccess.Abstract.EntityFramework
 
             using (LibraryContext context = new LibraryContext())
             {
-                var booksByCategory = context.Libraries.GroupBy(l => l.Category)
+                var booksByCategory = context.Libraries.Where(p=>p.UserName == _userName).GroupBy(l => l.Category)
                                                       .Select(g => new
                                                       {
                                                           Category = g.Key,
@@ -63,19 +78,13 @@ namespace Library.DataAccess.Abstract.EntityFramework
             }
         }
 
-        public List<Libraries> GetAll()
-        {
-            using (LibraryContext context = new LibraryContext())
-            {
-              return context.Libraries.ToList();
-            }
-        }
+      
 
         public List<BookShopList> GetBookShopList()
         {
             using (LibraryContext context = new LibraryContext())
             {
-                return context.BookShopLists.ToList();
+                return context.BookShopLists.Where(p=>p.UserName == _userName).ToList();
             }
         }
 
@@ -109,6 +118,7 @@ namespace Library.DataAccess.Abstract.EntityFramework
             {
                 return context.Libraries
                     .Where(book => book.TotalOfPages != 0 && Math.Round((decimal)book.CompletedPages / book.TotalOfPages * 100, 2) == 100)
+                    .Where(p=>p.UserName == _userName)
                     .ToList();
             }
         }
@@ -148,7 +158,7 @@ namespace Library.DataAccess.Abstract.EntityFramework
         {
             using(LibraryContext context = new LibraryContext())
             {
-                return context.BookShopLists.Where(p=>p.Name.Contains(key)).ToList();
+                return context.BookShopLists.Where(p=>p.Name.Contains(key)).Where(p=>p.UserName == _userName).ToList();
             }
         }
 
@@ -156,7 +166,7 @@ namespace Library.DataAccess.Abstract.EntityFramework
         {
             using (LibraryContext context = new LibraryContext())
             {
-                return context.BookShopLists.Where(p => p.Author.Contains(key)).ToList();
+                return context.BookShopLists.Where(p => p.Author.Contains(key)).Where(p => p.UserName == _userName).ToList();
             }
         }
 
@@ -164,7 +174,7 @@ namespace Library.DataAccess.Abstract.EntityFramework
         {
             using (LibraryContext context = new LibraryContext())
             {
-                return context.BookShopLists.Where(p => p.Category.Contains(key)).ToList();
+                return context.BookShopLists.Where(p => p.Category.Contains(key)).Where(p => p.UserName == _userName).ToList();
             }
         }
 
@@ -176,7 +186,7 @@ namespace Library.DataAccess.Abstract.EntityFramework
 
             using (var dbContext = new LibraryContext())
             {
-                var counts = dbContext.BookShopLists
+                var counts = dbContext.BookShopLists.Where(p => p.UserName == _userName)
                     .GroupBy(b => b.Category).Select(g => new { Category = g.Key, Count = g.Count() }).ToList();
                 foreach (var item in counts)
                 {
@@ -188,24 +198,24 @@ namespace Library.DataAccess.Abstract.EntityFramework
             return categoryCounts;
         }
 
-        public List<PlannedBook> GetPlannedBooks()
+        public List<UserReadingPlan> GetPlannedBooks()
         {
             using(LibraryContext context = new LibraryContext())
             {
-                return context.PlannedBooks.ToList();
+                return context.ReadingPlan.ToList();
             }
         }
 
-        public void AddBookToPlannedBooksList(PlannedBook plannedBook)
+        public void AddBookToPlannedBooksList(UserReadingPlan plannedBook)
         {
             using (LibraryContext context = new LibraryContext())
             {
-                context.PlannedBooks.Add(plannedBook);
+                context.ReadingPlan.Add(plannedBook);
                 context.SaveChanges();
             }
         }
 
-        public void UpdatePlannedBookList(PlannedBook plannedBook)
+        public void UpdatePlannedBookList(UserReadingPlan plannedBook)
         {
             using (LibraryContext context = new LibraryContext())
             {
@@ -215,7 +225,7 @@ namespace Library.DataAccess.Abstract.EntityFramework
             }
         }
 
-        public void DeletePlannedBookList(PlannedBook plannedBook)
+        public void DeletePlannedBookList(UserReadingPlan plannedBook)
         {
 
             using (LibraryContext context = new LibraryContext())
@@ -225,14 +235,6 @@ namespace Library.DataAccess.Abstract.EntityFramework
                 context.SaveChanges();
             }
         }
-
-        public void AddNewUser(UserAccount userAccount)
-        {
-         using(LibraryContext context =new LibraryContext())
-            {
-                context.UserAccounts.Add(userAccount);
-                context.SaveChanges();
-            }
-        }
+        
     }
 }

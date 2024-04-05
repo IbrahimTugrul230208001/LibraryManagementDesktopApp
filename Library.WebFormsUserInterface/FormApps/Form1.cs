@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -18,7 +19,6 @@ using Library.Entity.Concrete;
 using Library.WebFormsUserInterface;
 using Library.WebFormsUserInterface.FormApps;
 
-
 namespace LibraryManagementSystem
 {
 
@@ -29,17 +29,17 @@ namespace LibraryManagementSystem
 
         public LibraryManager _libraryManager;
         private string _framework;
-        private string _userName;
-        public void SelectFramework(string framework)
+        public string _userName;
+        public void SelectFramework(string framework,string userName)
         {
             _framework = framework;
             if (framework == "ADONET")
             {
-                _libraryManager = new LibraryManager(new ADONET());
+                _libraryManager = new LibraryManager(new ADONET(userName));
             }
             else if (framework == "EntityFramework")
             {
-                _libraryManager = new LibraryManager(new EntityFramework());
+                _libraryManager = new LibraryManager(new EntityFramework(userName));
             }
             else
             {
@@ -50,7 +50,7 @@ namespace LibraryManagementSystem
         public Form1(string framework,string userName)
         {
             InitializeComponent();
-            SelectFramework(framework);
+            SelectFramework(framework,userName);
             _userName = userName;
         }
                     
@@ -94,7 +94,7 @@ namespace LibraryManagementSystem
             SetShopPlanColorsToDefault();
             SetReadingPlanColorsToDefault();
             LibraryPanel.Controls.Clear();
-            LibraryPage libraryPage = new LibraryPage(_framework);
+            LibraryPage libraryPage = new LibraryPage(_framework,_userName);
             LibraryPanel.Controls.Add(libraryPage);
 
         }
@@ -106,7 +106,7 @@ namespace LibraryManagementSystem
             SetLibraryColorsToDefault();
             SetReadingPlanColorsToDefault();
             LibraryPanel.Controls.Clear();
-            BookShopListPage bookShopListPage = new BookShopListPage(_framework);
+            BookShopListPage bookShopListPage = new BookShopListPage(_framework,_userName);
             LibraryPanel.Controls.Add(bookShopListPage);
 
         }
@@ -118,8 +118,8 @@ namespace LibraryManagementSystem
             SetLibraryColorsToDefault();
             SetShopPlanColorsToDefault();
             LibraryPanel.Controls.Clear();
-            ReadingPlan readingPlan = new ReadingPlan(_framework);
-            LibraryPanel.Controls.Add(readingPlan);
+            ReadingPlan readingPlanPage = new ReadingPlan(_framework,_userName);
+            LibraryPanel.Controls.Add(readingPlanPage);
         }
         
         private void SetLibraryColorsToDefault()
@@ -147,16 +147,24 @@ namespace LibraryManagementSystem
         
         private void SetMainMenuData()
         {
-            SelectedFrameworkLabel.Text += _framework;
-            progressBarCompletionRate.Value = (int)Library.WebFormsUserInterface.Properties.Settings.Default.SelectedCompletionRate;
+            SqlConnection connection = new SqlConnection("server = (localdb)\\mssqllocaldb;initial catalog = LibraryManagement;integrated security = true");
+            connection.Open();
+            SqlCommand command = new SqlCommand("SELECT UserName,SelectedCompletionRate,SelectedBookName,AuthorOfSelectedBook,CategoryOfSelectedBook,TotalOfBooksInLibrary FROM StoredUserData",connection);
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                if(_userName == Convert.ToString(reader["UserName"]))
+                {
+                    NameOfBookLabel.Text += Convert.ToString(reader["SelectedBookName"]);
+                    AuthorOfBookLabel.Text += Convert.ToString(reader["AuthorOfSelectedBook"]);
+                    CategoryOfBookLabel.Text += Convert.ToString(reader["CategoryOfSelectedBook"]);
+                    BookCountLabel.Text = Convert.ToString(reader["TotalOfBooksInLibrary"]);
+                    progressBarCompletionRate.Value = Convert.ToInt32(reader["SelectedCompletionRate"]);
+                }
+            }
+            reader.Close();
+            connection.Close();
             HelloLabel.Text += _userName + "!";
-            NameOfBookLabel.Text += Library.WebFormsUserInterface.Properties.Settings.Default.SelectedBookName;
-            AuthorOfBookLabel.Text += Library.WebFormsUserInterface.Properties.Settings.Default.AuthorOfSelectedBook;
-            CategoryOfBookLabel.Text += Library.WebFormsUserInterface.Properties.Settings.Default.CategoryOfSelectedBook;
-            BookCountLabel.Text = Convert.ToString(Library.WebFormsUserInterface.Properties.Settings.Default.TotalOfBooks);
         }
-
-        
     }
-
 }

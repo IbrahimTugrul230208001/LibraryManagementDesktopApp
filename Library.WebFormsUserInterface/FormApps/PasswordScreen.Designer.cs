@@ -42,8 +42,6 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.LoginButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.ADONETradioButton = new System.Windows.Forms.RadioButton();
-            this.EfRadioButton = new System.Windows.Forms.RadioButton();
             this.TbxUserName = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -110,8 +108,6 @@
             this.panel1.Controls.Add(this.checkBox1);
             this.panel1.Controls.Add(this.LoginButton);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.ADONETradioButton);
-            this.panel1.Controls.Add(this.EfRadioButton);
             this.panel1.Controls.Add(this.TbxUserName);
             this.panel1.Location = new System.Drawing.Point(34, 140);
             this.panel1.Name = "panel1";
@@ -135,7 +131,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(45, 32);
+            this.label3.Location = new System.Drawing.Point(45, 69);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(324, 22);
             this.label3.TabIndex = 5;
@@ -175,13 +171,14 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
+            this.checkBox1.BackColor = System.Drawing.SystemColors.Control;
             this.checkBox1.Location = new System.Drawing.Point(303, 176);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(101, 17);
             this.checkBox1.TabIndex = 7;
             this.checkBox1.Text = "Show password";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBox1.UseVisualStyleBackColor = false;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
             // 
             // LoginButton
             // 
@@ -209,30 +206,6 @@
             this.label1.Size = new System.Drawing.Size(71, 16);
             this.label1.TabIndex = 3;
             this.label1.Text = "Username";
-            // 
-            // ADONETradioButton
-            // 
-            this.ADONETradioButton.AutoSize = true;
-            this.ADONETradioButton.Location = new System.Drawing.Point(224, 95);
-            this.ADONETradioButton.Name = "ADONETradioButton";
-            this.ADONETradioButton.Size = new System.Drawing.Size(73, 17);
-            this.ADONETradioButton.TabIndex = 9;
-            this.ADONETradioButton.TabStop = true;
-            this.ADONETradioButton.Text = "ADO.NET";
-            this.ADONETradioButton.UseVisualStyleBackColor = true;
-            this.ADONETradioButton.CheckedChanged += new System.EventHandler(this.ADONETradioButton_CheckedChanged);
-            // 
-            // EfRadioButton
-            // 
-            this.EfRadioButton.AutoSize = true;
-            this.EfRadioButton.Location = new System.Drawing.Point(111, 95);
-            this.EfRadioButton.Name = "EfRadioButton";
-            this.EfRadioButton.Size = new System.Drawing.Size(103, 17);
-            this.EfRadioButton.TabIndex = 8;
-            this.EfRadioButton.TabStop = true;
-            this.EfRadioButton.Text = "EntityFramework";
-            this.EfRadioButton.UseVisualStyleBackColor = true;
-            this.EfRadioButton.CheckedChanged += new System.EventHandler(this.EfRadioButton_CheckedChanged);
             // 
             // TbxUserName
             // 
@@ -279,8 +252,6 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button LoginButton;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RadioButton ADONETradioButton;
-        private System.Windows.Forms.RadioButton EfRadioButton;
         private System.Windows.Forms.TextBox TbxUserName;
         private System.Windows.Forms.Label ForgotYourPassword;
     }

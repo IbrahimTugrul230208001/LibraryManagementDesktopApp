@@ -65,11 +65,19 @@
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.panelCategoryCounts = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbxCategories = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tbSearchByAuthor = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tbSearchByName = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.panelCategoryCounts.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label19
@@ -130,7 +138,7 @@
             this.DeleteButton.FlatAppearance.BorderSize = 0;
             this.DeleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DeleteButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.DeleteButton.Location = new System.Drawing.Point(894, 31);
+            this.DeleteButton.Location = new System.Drawing.Point(916, 14);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(110, 23);
             this.DeleteButton.TabIndex = 65;
@@ -142,9 +150,9 @@
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlDark;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(327, 58);
+            this.dataGridView1.Location = new System.Drawing.Point(327, 43);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(699, 279);
+            this.dataGridView1.Size = new System.Drawing.Size(699, 271);
             this.dataGridView1.TabIndex = 60;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
@@ -163,9 +171,9 @@
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.tbAddName);
             this.groupBox3.Controls.Add(this.label10);
-            this.groupBox3.Location = new System.Drawing.Point(679, 358);
+            this.groupBox3.Location = new System.Drawing.Point(679, 427);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(347, 312);
+            this.groupBox3.Size = new System.Drawing.Size(347, 283);
             this.groupBox3.TabIndex = 63;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Add book";
@@ -186,7 +194,7 @@
             this.tbAddButton.FlatAppearance.BorderSize = 0;
             this.tbAddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.tbAddButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.tbAddButton.Location = new System.Drawing.Point(125, 246);
+            this.tbAddButton.Location = new System.Drawing.Point(125, 242);
             this.tbAddButton.Name = "tbAddButton";
             this.tbAddButton.Size = new System.Drawing.Size(157, 23);
             this.tbAddButton.TabIndex = 28;
@@ -311,9 +319,9 @@
             this.groupBox6.Controls.Add(this.label25);
             this.groupBox6.Controls.Add(this.tbUpdateName);
             this.groupBox6.Controls.Add(this.label26);
-            this.groupBox6.Location = new System.Drawing.Point(327, 358);
+            this.groupBox6.Location = new System.Drawing.Point(327, 427);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(338, 312);
+            this.groupBox6.Size = new System.Drawing.Size(338, 283);
             this.groupBox6.TabIndex = 62;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Update book";
@@ -321,7 +329,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(45, 208);
+            this.label1.Location = new System.Drawing.Point(44, 204);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 13);
             this.label1.TabIndex = 28;
@@ -329,14 +337,14 @@
             // 
             // tbUpdateUserScore
             // 
-            this.tbUpdateUserScore.Location = new System.Drawing.Point(125, 205);
+            this.tbUpdateUserScore.Location = new System.Drawing.Point(124, 201);
             this.tbUpdateUserScore.Name = "tbUpdateUserScore";
             this.tbUpdateUserScore.Size = new System.Drawing.Size(157, 20);
             this.tbUpdateUserScore.TabIndex = 29;
             // 
             // tbUpdateTotalOfPages
             // 
-            this.tbUpdateTotalOfPages.Location = new System.Drawing.Point(125, 139);
+            this.tbUpdateTotalOfPages.Location = new System.Drawing.Point(124, 135);
             this.tbUpdateTotalOfPages.Name = "tbUpdateTotalOfPages";
             this.tbUpdateTotalOfPages.Size = new System.Drawing.Size(157, 20);
             this.tbUpdateTotalOfPages.TabIndex = 27;
@@ -344,7 +352,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(24, 142);
+            this.label22.Location = new System.Drawing.Point(23, 138);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(78, 13);
             this.label22.TabIndex = 26;
@@ -352,7 +360,7 @@
             // 
             // tbUpdateCategory
             // 
-            this.tbUpdateCategory.Location = new System.Drawing.Point(125, 104);
+            this.tbUpdateCategory.Location = new System.Drawing.Point(124, 100);
             this.tbUpdateCategory.Name = "tbUpdateCategory";
             this.tbUpdateCategory.Size = new System.Drawing.Size(157, 20);
             this.tbUpdateCategory.TabIndex = 6;
@@ -360,7 +368,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(71, 178);
+            this.label23.Location = new System.Drawing.Point(70, 174);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(31, 13);
             this.label23.TabIndex = 24;
@@ -373,7 +381,7 @@
             this.tbUpdateButton.FlatAppearance.BorderSize = 0;
             this.tbUpdateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.tbUpdateButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.tbUpdateButton.Location = new System.Drawing.Point(125, 246);
+            this.tbUpdateButton.Location = new System.Drawing.Point(124, 242);
             this.tbUpdateButton.Name = "tbUpdateButton";
             this.tbUpdateButton.Size = new System.Drawing.Size(157, 23);
             this.tbUpdateButton.TabIndex = 9;
@@ -383,14 +391,14 @@
             // 
             // tbUpdatePrice
             // 
-            this.tbUpdatePrice.Location = new System.Drawing.Point(125, 175);
+            this.tbUpdatePrice.Location = new System.Drawing.Point(124, 171);
             this.tbUpdatePrice.Name = "tbUpdatePrice";
             this.tbUpdatePrice.Size = new System.Drawing.Size(157, 20);
             this.tbUpdatePrice.TabIndex = 25;
             // 
             // tbUpdateAuthor
             // 
-            this.tbUpdateAuthor.Location = new System.Drawing.Point(125, 67);
+            this.tbUpdateAuthor.Location = new System.Drawing.Point(124, 63);
             this.tbUpdateAuthor.Name = "tbUpdateAuthor";
             this.tbUpdateAuthor.Size = new System.Drawing.Size(157, 20);
             this.tbUpdateAuthor.TabIndex = 7;
@@ -398,7 +406,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(67, 37);
+            this.label24.Location = new System.Drawing.Point(66, 33);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(35, 13);
             this.label24.TabIndex = 2;
@@ -407,7 +415,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(63, 74);
+            this.label25.Location = new System.Drawing.Point(62, 70);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(38, 13);
             this.label25.TabIndex = 3;
@@ -415,7 +423,7 @@
             // 
             // tbUpdateName
             // 
-            this.tbUpdateName.Location = new System.Drawing.Point(125, 34);
+            this.tbUpdateName.Location = new System.Drawing.Point(124, 30);
             this.tbUpdateName.Name = "tbUpdateName";
             this.tbUpdateName.Size = new System.Drawing.Size(157, 20);
             this.tbUpdateName.TabIndex = 5;
@@ -423,7 +431,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(52, 107);
+            this.label26.Location = new System.Drawing.Point(51, 103);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(49, 13);
             this.label26.TabIndex = 4;
@@ -434,7 +442,7 @@
             this.groupBox7.Controls.Add(this.panelCategoryCounts);
             this.groupBox7.Location = new System.Drawing.Point(19, 414);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(302, 234);
+            this.groupBox7.Size = new System.Drawing.Size(302, 256);
             this.groupBox7.TabIndex = 64;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Categories";
@@ -444,7 +452,7 @@
             this.panelCategoryCounts.Controls.Add(this.button2);
             this.panelCategoryCounts.Location = new System.Drawing.Point(23, 29);
             this.panelCategoryCounts.Name = "panelCategoryCounts";
-            this.panelCategoryCounts.Size = new System.Drawing.Size(260, 184);
+            this.panelCategoryCounts.Size = new System.Drawing.Size(260, 201);
             this.panelCategoryCounts.TabIndex = 28;
             // 
             // button2
@@ -460,18 +468,90 @@
             this.button2.Text = "Delete";
             this.button2.UseVisualStyleBackColor = false;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.cbxCategories);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.tbSearchByAuthor);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.tbSearchByName);
+            this.groupBox1.Location = new System.Drawing.Point(327, 320);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(699, 101);
+            this.groupBox1.TabIndex = 69;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Search with filter";
+            // 
+            // cbxCategories
+            // 
+            this.cbxCategories.FormattingEnabled = true;
+            this.cbxCategories.Items.AddRange(new object[] {
+            "",
+            "Din",
+            "Fen",
+            "Tarih",
+            "Psikoloji",
+            "Edebiyat"});
+            this.cbxCategories.Location = new System.Drawing.Point(553, 42);
+            this.cbxCategories.Name = "cbxCategories";
+            this.cbxCategories.Size = new System.Drawing.Size(111, 21);
+            this.cbxCategories.TabIndex = 29;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(447, 46);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(100, 13);
+            this.label3.TabIndex = 28;
+            this.label3.Text = "Search by Category";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(232, 47);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(89, 13);
+            this.label4.TabIndex = 26;
+            this.label4.Text = "Search by Author";
+            // 
+            // tbSearchByAuthor
+            // 
+            this.tbSearchByAuthor.Location = new System.Drawing.Point(326, 42);
+            this.tbSearchByAuthor.Name = "tbSearchByAuthor";
+            this.tbSearchByAuthor.Size = new System.Drawing.Size(115, 20);
+            this.tbSearchByAuthor.TabIndex = 27;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(35, 45);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(86, 13);
+            this.label5.TabIndex = 24;
+            this.label5.Text = "Search by Name";
+            // 
+            // tbSearchByName
+            // 
+            this.tbSearchByName.Location = new System.Drawing.Point(127, 42);
+            this.tbSearchByName.Name = "tbSearchByName";
+            this.tbSearchByName.Size = new System.Drawing.Size(99, 20);
+            this.tbSearchByName.TabIndex = 25;
+            // 
             // BookShopListPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.circularProgressBarUserScore);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.AddLibraryButton);
-            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox7);
             this.Name = "BookShopListPage";
             this.Size = new System.Drawing.Size(1060, 719);
@@ -483,6 +563,8 @@
             this.groupBox6.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.panelCategoryCounts.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -527,5 +609,12 @@
         private System.Windows.Forms.TextBox tbAddUserScore;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbUpdateUserScore;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox cbxCategories;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tbSearchByAuthor;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox tbSearchByName;
     }
 }

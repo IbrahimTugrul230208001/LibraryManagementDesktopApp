@@ -12,7 +12,10 @@ namespace Library.Business.FluentValidation
     {
         public LibraryValidator() {
             RuleFor(p=>p.Name).NotEmpty();
+            RuleFor(p => p.Name).MinimumLength(3);
             RuleFor(p=>p.Author).NotEmpty();
+            RuleFor(p => p.Author).NotEmpty();
+            RuleFor(p => p.Author).MinimumLength(2);
             RuleFor(p=>p.CompletedPages).GreaterThanOrEqualTo(0);
             RuleFor(p=>p.TotalOfPages).NotEmpty().GreaterThanOrEqualTo(p=>p.CompletedPages)
             .WithMessage("Total of pages is more than or equal to completed pages.").GreaterThan(0);
@@ -26,7 +29,9 @@ namespace Library.Business.FluentValidation
         public BookShopListValidator()
         {
             RuleFor(p => p.Name).NotEmpty();
+            RuleFor(p => p.Name).MinimumLength(3);
             RuleFor(p => p.Author).NotEmpty();
+            RuleFor(p => p.Author).MinimumLength(2);
             RuleFor(p => p.Price).NotEmpty().GreaterThan(0);
             RuleFor(p => p.Category).NotEmpty();
 
@@ -34,11 +39,12 @@ namespace Library.Business.FluentValidation
 
     }
 
-    public class PlannedBooksValidator : AbstractValidator<PlannedBook>
+    public class PlannedBooksValidator : AbstractValidator<UserReadingPlan>
     {
         public PlannedBooksValidator()
         {
             RuleFor(p => p.Name).NotEmpty();
+            RuleFor(p => p.Name).MinimumLength(3);
             RuleFor(p => p.Author).NotEmpty();
             RuleFor(p => p.CompletedPages).GreaterThanOrEqualTo(0);
             RuleFor(p => p.TotalOfPages).NotEmpty().GreaterThanOrEqualTo(p => p.CompletedPages)

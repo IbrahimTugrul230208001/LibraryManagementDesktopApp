@@ -41,3 +41,7 @@ C:\Users\admin\source\repos\LibraryManagementSystem\Library.WebFormsUserInterfac
 C:\Users\admin\source\repos\LibraryManagementSystem\Library.WebFormsUserInterface\obj\Debug\Library.WebFormsUserInterface.exe
 C:\Users\admin\source\repos\LibraryManagementSystem\Library.WebFormsUserInterface\obj\Debug\Library.WebFormsUserInterface.pdb
 C:\Users\admin\source\repos\LibraryManagementSystem\Library.WebFormsUserInterface\obj\Debug\Library.WebFormsUserInterface.FormApps.RegisterForms.resources
+C:\Users\admin\source\repos\LibraryManagementSystem\Library.WebFormsUserInterface\bin\Debug\Xanadu.DataGridViewX.dll
+C:\Users\admin\source\repos\LibraryManagementSystem\Library.WebFormsUserInterface\bin\Debug\Xanadu.LocalizedAttributes.dll
+C:\Users\admin\source\repos\LibraryManagementSystem\Library.WebFormsUserInterface\bin\Debug\Xanadu.DataGridViewX.xml
+C:\Users\admin\source\repos\LibraryManagementSystem\Library.WebFormsUserInterface\bin\Debug\ja\Xanadu.DataGridViewX.resources.dll

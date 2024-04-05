@@ -3,6 +3,9 @@ using Library.DataAccess.Abstract.EntityFramework;
 using Library.DataAccess.Concrete.ADONET;
 using Library.Entity.Concrete;
 using System;
+using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -10,11 +13,9 @@ namespace Library.WebFormsUserInterface.FormApps
 {
     public partial class RegisterForms : Form
     {
-        private LibraryManager _libraryManager;
-       
+        AdonetUserEntry adonetUserEntry = new AdonetUserEntry();
         public RegisterForms()
         {
-            _libraryManager = new LibraryManager(new ADONET());
             InitializeComponent();
         }
 
@@ -22,7 +23,7 @@ namespace Library.WebFormsUserInterface.FormApps
         {
             if (TbxPassword.Text == TbxConfirmPassword.Text)
             {
-                _libraryManager.AddNewUser(new UserAccount
+                adonetUserEntry.AddNewUser(new UserAccount
                 {
                     UserName = TbxUserName.Text,
                     Password = TbxPassword.Text,
@@ -36,6 +37,7 @@ namespace Library.WebFormsUserInterface.FormApps
             }
         }
 
+       
         private void ClearTextBoxes()
         {
             TbxUserName.Text = "";

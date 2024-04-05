@@ -12,7 +12,6 @@ namespace Library.DataAccess.Concrete.EntityFramework
     {
         public DbSet<Libraries> Libraries { get; set; }
         public DbSet<BookShopList> BookShopLists { get; set; }
-        public DbSet<PlannedBook> PlannedBooks { get; set; }
-        public DbSet<UserAccount> UserAccounts { get; set; }
+        public DbSet<UserReadingPlan> ReadingPlan { get; set; }
     }
 }

@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+    <assembly>
+        <name>Xanadu.DataGridViewX</name>
+    </assembly>
+    <members>
+        <member name="T:Xanadu.DataGridViewX">
+            <summary>
+                <para>
+            The control that extends the <see cref="T:System.Windows.Forms.DataGridView" />.
+            The <see cref="P:Xanadu.DataGridViewX.AllowUserToOrderRows" /> property enables manual row relocation.
+            The <see cref="P:Xanadu.DataGridViewX.RowHeadersNumberVisible" /> property displays the line number in the row header.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Xanadu.DataGridViewX.AllowUserToOrderRows">
+            <summary>
+                <para>Gets or sets whether manual row relocation is enabled.</para>
+            </summary>
+        </member>
+        <member name="E:Xanadu.DataGridViewX.AllowUserToOrderRowsChanged">
+            <summary>
+                <para>Occurs when the value of the <see cref="P:Xanadu.DataGridViewX.AllowUserToOrderRows" /> property changes.</para>
+            </summary>
+        </member>
+        <member name="M:Xanadu.DataGridViewX.OnAllowUserToOrderRowsChanged(System.EventArgs)">
+            <summary>
+                <para>Raises the <see cref="E:Xanadu.DataGridViewX.AllowUserToOrderRowsChanged" /> event.</para>
+            </summary>
+            <param name="e">
+                <para>
+                    <see cref="T:System.EventArgs" /> that contains the event data.</para>
+            </param>
+        </member>
+        <member name="P:Xanadu.DataGridViewX.RowHeadersNumberVisible">
+            <summary>
+                <para>Gets or sets whether the line number is displayed in the row header.</para>
+            </summary>
+        </member>
+        <member name="E:Xanadu.DataGridViewX.RowHeadersNumberVisibleChanged">
+            <summary>
+                <para>Occurs when the value of the <see cref="P:Xanadu.DataGridViewX.RowHeadersNumberVisible" /> property changes.</para>
+            </summary>
+        </member>
+        <member name="M:Xanadu.DataGridViewX.OnRowHeadersNumberVisibleChanged(System.EventArgs)">
+            <summary>
+                <para>Raises the <see cref="E:Xanadu.DataGridViewX.RowHeadersNumberVisibleChanged" /> event.</para>
+            </summary>
+            <param name="e">
+                <para>
+                    <see cref="T:System.EventArgs" /> that contains the event data.</para>
+            </param>
+        </member>
+        <member name="P:Xanadu.DataGridViewX.IsInOrderRows">
+            <summary>
+                <para>Gets whether manual row relocation is in progress.</para>
+            </summary>
+        </member>
+        <member name="M:Xanadu.DataGridViewX.OrderRow(System.Int32,System.Int32)">
+            <summary>
+                <para>Order rows.</para>
+            </summary>
+        </member>
+        <member name="M:Xanadu.DataGridViewX.OnMouseDown(System.Windows.Forms.MouseEventArgs)">
+            <summary>
+                <see cref="M:System.Windows.Forms.DataGridView.OnMouseDown(System.Windows.Forms.MouseEventArgs)" />
+            </summary>
+        </member>
+        <member name="M:Xanadu.DataGridViewX.OnMouseMove(System.Windows.Forms.MouseEventArgs)">
+            <summary>
+                <see cref="M:System.Windows.Forms.DataGridView.OnMouseMove(System.Windows.Forms.MouseEventArgs)" />
+            </summary>
+        </member>
+        <member name="M:Xanadu.DataGridViewX.OnMouseUp(System.Windows.Forms.MouseEventArgs)">
+            <summary>
+                <see cref="M:System.Windows.Forms.DataGridView.OnMouseUp(System.Windows.Forms.MouseEventArgs)" />
+            </summary>
+        </member>
+        <member name="M:Xanadu.DataGridViewX.OnRowPostPaint(System.Windows.Forms.DataGridViewRowPostPaintEventArgs)">
+            <summary>
+                <see cref="M:System.Windows.Forms.DataGridView.OnRowPostPaint(System.Windows.Forms.DataGridViewRowPostPaintEventArgs)" />
+            </summary>
+        </member>
+        <member name="M:Xanadu.DataGridViewX.OnMouseWheel(System.Windows.Forms.MouseEventArgs)">
+            <summary>
+                <see cref="M:System.Windows.Forms.DataGridView.OnMouseWheel(System.Windows.Forms.MouseEventArgs)" />
+            </summary>
+        </member>
+        <member name="M:Xanadu.DataGridViewX.OnKeyDown(System.Windows.Forms.KeyEventArgs)">
+            <summary>
+                <see cref="M:System.Windows.Forms.DataGridView.OnKeyDown(System.Windows.Forms.KeyEventArgs)" />
+            </summary>
+        </member>
+        <member name="M:Xanadu.DataGridViewX.OnCellPainting(System.Windows.Forms.DataGridViewCellPaintingEventArgs)">
+            <summary>
+                <see cref="M:System.Windows.Forms.DataGridView.OnCellPainting(System.Windows.Forms.DataGridViewCellPaintingEventArgs)" />
+            </summary>
+        </member>
+        <member name="M:Xanadu.DataGridViewX.OnCellBeginEdit(System.Windows.Forms.DataGridViewCellCancelEventArgs)">
+            <summary>
+                <see cref="M:System.Windows.Forms.DataGridView.OnCellBeginEdit(System.Windows.Forms.DataGridViewCellCancelEventArgs)" />
+            </summary>
+        </member>
+        <member name="T:Xanadu.Properties.Resources">
+            <summary>
+              ローカライズされた文字列などを検索するための、厳密に型指定されたリソース クラスです。
+            </summary>
+        </member>
+        <member name="P:Xanadu.Properties.Resources.ResourceManager">
+            <summary>
+              このクラスで使用されているキャッシュされた ResourceManager インスタンスを返します。
+            </summary>
+        </member>
+        <member name="P:Xanadu.Properties.Resources.Culture">
+            <summary>
+              すべてについて、現在のスレッドの CurrentUICulture プロパティをオーバーライドします
+              現在のスレッドの CurrentUICulture プロパティをオーバーライドします。
+            </summary>
+        </member>
+        <member name="P:Xanadu.Properties.Resources.Category_PropertyChanged">
+            <summary>
+              Property changes に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Xanadu.Properties.Resources.DataGridViewX_AllowUserToOrderRows_Description">
+            <summary>
+              Indicates whether manual row relocation is enabled. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Xanadu.Properties.Resources.DataGridViewX_AllowUserToOrderRowsChanged_Description">
+            <summary>
+              The AllowUserToOrderRowsChanged property occurs when the value changes. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Xanadu.Properties.Resources.DataGridViewX_Description">
+            <summary>
+              taGridView with the addition of the ability to manually relocate rows and display line numbers. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Xanadu.Properties.Resources.DataGridViewX_RowHeadersNumberVisible_Description">
+            <summary>
+              Indicates whether the line number is displayed in the row header. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Xanadu.Properties.Resources.DataGridViewX_RowHeadersNumberVisibleChanged_Description">
+            <summary>
+              Occurs when the value of the RowHeadersIndexVisible property changes. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+    </members>
+</doc>

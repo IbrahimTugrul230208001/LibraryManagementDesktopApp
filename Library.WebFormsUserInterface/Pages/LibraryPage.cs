@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -17,10 +18,12 @@ namespace Library.WebFormsUserInterface.FormApps
 {
     public partial class LibraryPage : UserControl
     {
-        public LibraryPage(string framework)
+        private string _userName;
+        public LibraryPage(string framework,string userName)
         {
             InitializeComponent();
-            SelectFramework(framework);
+            SelectFramework(framework,userName);
+            _userName = userName;
 
         }
 
@@ -30,21 +33,22 @@ namespace Library.WebFormsUserInterface.FormApps
         private void LoadLibrary()
         {
             dataGridView1.DataSource = _libraryManager.GetAll();
-            dataGridView1.Columns[0].Width = 34;
-            dataGridView1.Columns[1].Width = 154;
-            dataGridView1.Columns[2].Width = 150;
+            dataGridView1.Columns["UserName"].Visible = false;
+            dataGridView1.Columns[1].Width = 34;
+            dataGridView1.Columns[2].Width = 154;
+            dataGridView1.Columns[3].Width = 150;
         }
 
-        public void SelectFramework(string framework)
+        public void SelectFramework(string framework, string userName)
         {
             
             if (framework == "ADONET")
             {
-                _libraryManager = new LibraryManager(new ADONET());
+                _libraryManager = new LibraryManager(new ADONET(userName));
             }
             else if (framework == "EntityFramework")
             {
-                _libraryManager = new LibraryManager(new EntityFramework());
+                _libraryManager = new LibraryManager(new EntityFramework(userName));
             }
             else
             {
@@ -61,8 +65,8 @@ namespace Library.WebFormsUserInterface.FormApps
         private void DisplayCompletionRate()
         {
 
-            int completedPages = Convert.ToInt32(dataGridView1.CurrentRow.Cells[4].Value);
-            int totalOfPages = Convert.ToInt32(dataGridView1.CurrentRow.Cells[5].Value);
+            int completedPages = Convert.ToInt32(dataGridView1.CurrentRow.Cells[5].Value);
+            int totalOfPages = Convert.ToInt32(dataGridView1.CurrentRow.Cells[6].Value);
             decimal completionRateDecimal = (decimal)completedPages / totalOfPages * 100;
             int completionRate = Convert.ToInt32(completionRateDecimal);
             circularProgressBar1.Value = completionRate;
@@ -73,11 +77,11 @@ namespace Library.WebFormsUserInterface.FormApps
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            tbUpdateName.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[1].Value);
-            tbUpdateAuthor.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[2].Value);
-            tbUpdateCategory.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[3].Value);
-            tbUpdateCompletedPages.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[4].Value);
-            tbUpdateTotalOfPages.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[5].Value);
+            tbUpdateName.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[2].Value);
+            tbUpdateAuthor.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[3].Value);
+            tbUpdateCategory.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[4].Value);
+            tbUpdateCompletedPages.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[5].Value);
+            tbUpdateTotalOfPages.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[6].Value);
             DisplayCompletionRate();
         }
 
@@ -94,7 +98,7 @@ namespace Library.WebFormsUserInterface.FormApps
             tbUpdateCompletedPages.Text = "";
             tbUpdateTotalOfPages.Text = "";
         }
-
+        private int _totalOfBooks;
         private void DisplayBookCountsByCategory()
         {
             Dictionary<string, int> categoryCounts;
@@ -115,9 +119,7 @@ namespace Library.WebFormsUserInterface.FormApps
                 yOffset += label.Height + 7;
             }
 
-
-            Properties.Settings.Default.TotalOfBooks = totalBooks;
-            Properties.Settings.Default.Save();
+            _totalOfBooks = totalBooks;
             Label totalLabel = new Label();
             totalLabel.Text = $"Total: {totalBooks} books";
             totalLabel.AutoSize = true;
@@ -145,7 +147,8 @@ namespace Library.WebFormsUserInterface.FormApps
         {
             _libraryManager.Update(new Libraries
             {
-                Id = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value),
+                UserName = _userName,
+                Id = Convert.ToInt32(dataGridView1.CurrentRow.Cells[1].Value),
                 Name = tbUpdateName.Text,
                 Author = tbUpdateAuthor.Text,
                 Category = tbUpdateCategory.Text,
@@ -163,6 +166,7 @@ namespace Library.WebFormsUserInterface.FormApps
         {
             _libraryManager.Add(new Libraries
             {
+                UserName = _userName,
                 Name = tbAddName.Text,
                 Author = tbAddAuthor.Text,
                 Category = tbAddCategory.Text,
@@ -174,16 +178,30 @@ namespace Library.WebFormsUserInterface.FormApps
             MessageBox.Show("Book Added!");
             LoadLibrary();
             ClearTextBoxes();
+            SaveTotalOfBooksCount();
+        }
+
+        private void SaveTotalOfBooksCount()
+        {
+            SqlConnection connection = new SqlConnection("server = (localdb)\\mssqllocaldb;initial catalog = LibraryManagement;integrated security = true");
+            connection.Open();
+            SqlCommand command = new SqlCommand($"UPDATE StoredUserData SET TotalOfBooksInLibrary = @TotalOfBooks WHERE UserName = @UserName",connection);
+            command.Parameters.AddWithValue("@UserName", _userName);
+            command.Parameters.AddWithValue("@TotalOfBooks",_totalOfBooks);
+            command.ExecuteNonQuery();
+            connection.Close();
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             _libraryManager.Delete(new Libraries
             {
-                Id = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value)
+                Id = Convert.ToInt32(dataGridView1.CurrentRow.Cells[1].Value)
             });
             LoadLibrary();
             ClearTextBoxes();
+            SaveTotalOfBooksCount();
+            MessageBox.Show("The book has been deleted.");
         }
 
 

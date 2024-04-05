@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Library.Entity.Concrete
 {
-    public class PlannedBook
+    public class UserReadingPlan
     {
+        public string UserName { get; set; }
         public int Id { get; set; }
         public string Name { get; set; }
         public string Author { get; set; }

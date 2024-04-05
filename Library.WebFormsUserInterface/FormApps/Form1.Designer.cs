@@ -56,7 +56,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.SelectedFrameworkLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.LibraryPanel.SuspendLayout();
@@ -99,7 +98,6 @@
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.MenuText;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.SelectedFrameworkLabel);
             this.panel2.Controls.Add(this.ReadingPlanPanelBack);
             this.panel2.Controls.Add(this.ShopPlanPanelBack);
             this.panel2.Controls.Add(this.LibraryPanelBack);
@@ -108,30 +106,30 @@
             this.panel2.Controls.Add(this.ShopPlanButton);
             this.panel2.Controls.Add(this.LibraryButton);
             this.panel2.ForeColor = System.Drawing.SystemColors.Control;
-            this.panel2.Location = new System.Drawing.Point(-9, 44);
+            this.panel2.Location = new System.Drawing.Point(0, 44);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(319, 730);
+            this.panel2.Size = new System.Drawing.Size(310, 720);
             this.panel2.TabIndex = 60;
             // 
             // ReadingPlanPanelBack
             // 
-            this.ReadingPlanPanelBack.Location = new System.Drawing.Point(7, 366);
+            this.ReadingPlanPanelBack.Location = new System.Drawing.Point(0, 366);
             this.ReadingPlanPanelBack.Name = "ReadingPlanPanelBack";
-            this.ReadingPlanPanelBack.Size = new System.Drawing.Size(12, 64);
+            this.ReadingPlanPanelBack.Size = new System.Drawing.Size(19, 64);
             this.ReadingPlanPanelBack.TabIndex = 6;
             // 
             // ShopPlanPanelBack
             // 
-            this.ShopPlanPanelBack.Location = new System.Drawing.Point(7, 275);
+            this.ShopPlanPanelBack.Location = new System.Drawing.Point(0, 275);
             this.ShopPlanPanelBack.Name = "ShopPlanPanelBack";
-            this.ShopPlanPanelBack.Size = new System.Drawing.Size(12, 64);
+            this.ShopPlanPanelBack.Size = new System.Drawing.Size(19, 64);
             this.ShopPlanPanelBack.TabIndex = 5;
             // 
             // LibraryPanelBack
             // 
-            this.LibraryPanelBack.Location = new System.Drawing.Point(7, 181);
+            this.LibraryPanelBack.Location = new System.Drawing.Point(0, 181);
             this.LibraryPanelBack.Name = "LibraryPanelBack";
-            this.LibraryPanelBack.Size = new System.Drawing.Size(12, 64);
+            this.LibraryPanelBack.Size = new System.Drawing.Size(19, 64);
             this.LibraryPanelBack.TabIndex = 4;
             // 
             // label11
@@ -155,10 +153,10 @@
             this.ReadingPlanButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ReadingPlanButton.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.ReadingPlanButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.ReadingPlanButton.Location = new System.Drawing.Point(19, 366);
+            this.ReadingPlanButton.Location = new System.Drawing.Point(18, 366);
             this.ReadingPlanButton.Name = "ReadingPlanButton";
             this.ReadingPlanButton.Padding = new System.Windows.Forms.Padding(60, 0, 0, 0);
-            this.ReadingPlanButton.Size = new System.Drawing.Size(309, 64);
+            this.ReadingPlanButton.Size = new System.Drawing.Size(290, 64);
             this.ReadingPlanButton.TabIndex = 2;
             this.ReadingPlanButton.Text = "Reading Plan";
             this.ReadingPlanButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -175,10 +173,10 @@
             this.ShopPlanButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ShopPlanButton.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.ShopPlanButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.ShopPlanButton.Location = new System.Drawing.Point(19, 275);
+            this.ShopPlanButton.Location = new System.Drawing.Point(18, 275);
             this.ShopPlanButton.Name = "ShopPlanButton";
             this.ShopPlanButton.Padding = new System.Windows.Forms.Padding(60, 0, 0, 0);
-            this.ShopPlanButton.Size = new System.Drawing.Size(309, 64);
+            this.ShopPlanButton.Size = new System.Drawing.Size(290, 64);
             this.ShopPlanButton.TabIndex = 1;
             this.ShopPlanButton.Text = "Shop Plan";
             this.ShopPlanButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -198,7 +196,7 @@
             this.LibraryButton.Location = new System.Drawing.Point(19, 181);
             this.LibraryButton.Name = "LibraryButton";
             this.LibraryButton.Padding = new System.Windows.Forms.Padding(60, 0, 0, 0);
-            this.LibraryButton.Size = new System.Drawing.Size(309, 64);
+            this.LibraryButton.Size = new System.Drawing.Size(290, 64);
             this.LibraryButton.TabIndex = 0;
             this.LibraryButton.Text = "Library";
             this.LibraryButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -390,16 +388,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "LIBRARY MANAGEMENT SYSTEM";
             // 
-            // SelectedFrameworkLabel
-            // 
-            this.SelectedFrameworkLabel.AutoSize = true;
-            this.SelectedFrameworkLabel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.SelectedFrameworkLabel.Location = new System.Drawing.Point(35, 86);
-            this.SelectedFrameworkLabel.Name = "SelectedFrameworkLabel";
-            this.SelectedFrameworkLabel.Size = new System.Drawing.Size(147, 16);
-            this.SelectedFrameworkLabel.TabIndex = 7;
-            this.SelectedFrameworkLabel.Text = "Selected Framework: ";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -459,6 +447,5 @@
         private System.Windows.Forms.Panel ReadingPlanPanelBack;
         private System.Windows.Forms.Panel ShopPlanPanelBack;
         private System.Windows.Forms.Panel LibraryPanelBack;
-        private System.Windows.Forms.Label SelectedFrameworkLabel;
     }
 }

@@ -118,13 +118,13 @@ namespace Library.Business.Concrete
                 return _LibraryDal.CountBooksByCategoryInBookShopList(out totalBooks);
             }
 
-            public List<PlannedBook> GetPlannedBooksToRead()
+            public List<UserReadingPlan> GetPlannedBooksToRead()
             {
 
                 return _LibraryDal.GetPlannedBooks();
             }
 
-            public void AddToBookPlanList(PlannedBook plannedBook)
+            public void AddToBookPlanList(UserReadingPlan plannedBook)
             {
                 PlannedBooksValidator validator = new PlannedBooksValidator();
                 var result = validator.Validate(plannedBook);
@@ -135,7 +135,7 @@ namespace Library.Business.Concrete
                 _LibraryDal.AddBookToPlannedBooksList(plannedBook);
             }
 
-            public void UpdateBookPlanList(PlannedBook plannedBook)
+            public void UpdateBookPlanList(UserReadingPlan plannedBook)
             {
                 PlannedBooksValidator validator = new PlannedBooksValidator();
                 var result = validator.Validate(plannedBook);
@@ -146,15 +146,10 @@ namespace Library.Business.Concrete
                 _LibraryDal.UpdatePlannedBookList(plannedBook);
             }
 
-            public void DeleteBookPlanList(PlannedBook plannedBook)
+            public void DeleteBookPlanList(UserReadingPlan plannedBook)
             {
 
                 _LibraryDal.DeletePlannedBookList(plannedBook);
-            }
-
-            public void AddNewUser(UserAccount userAccount)
-            {
-                _LibraryDal.AddNewUser(userAccount);
             }
         }
     }

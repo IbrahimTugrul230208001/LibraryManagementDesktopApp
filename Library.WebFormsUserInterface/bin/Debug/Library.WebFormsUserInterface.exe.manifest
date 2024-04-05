@@ -114,50 +114,50 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Library.Business.dll" size="9728">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Library.Business.dll" size="10240">
       <assemblyIdentity name="Library.Business" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>H39P4BpwMwQvmuffto+JhpV7TjIXPQNk095BiOStK+k=</dsig:DigestValue>
+        <dsig:DigestValue>pVTcPRbMubcd7d4gAcLquoHngyMXpIm2CpbpDrJkkBI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Library.DataAccess.dll" size="25088">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Library.DataAccess.dll" size="27136">
       <assemblyIdentity name="Library.DataAccess" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>1ZmacVqibj9GMR5Vmv/7flf/cCCWqSmaYJrbK8xakVo=</dsig:DigestValue>
+        <dsig:DigestValue>ol/lyC0x3alhO0F32EiT/lA5eK62FZDkSVufHWfzOTk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Library.Entity.dll" size="7168">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Library.Entity.dll" size="7680">
       <assemblyIdentity name="Library.Entity" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>acxBR5RBSHYdn8x2PDJQzLsiOOC+/aF4ISgFHaZ5Fc4=</dsig:DigestValue>
+        <dsig:DigestValue>sxsu3RVE6hUrlMWHf3ou8MjoFeYXMFvjX5f9HH1d5YI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Library.WebFormsUserInterface.exe" size="266720">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Library.WebFormsUserInterface.exe" size="272352">
       <assemblyIdentity name="Library.WebFormsUserInterface" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>TKY0DWXv/DNiDU/omTNKeNwaim2X0yzFW3QS+UZA8zc=</dsig:DigestValue>
+        <dsig:DigestValue>JStb7oHOnUgffsPbLyilmssLcPX7Wfz4roAF2ufPuVs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -194,6 +194,42 @@
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
         <dsig:DigestValue>2QUnKbVg2BnI11FJtsqSxIueGxsMyqUAgKdBZtuOqhI=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Xanadu.DataGridViewX.dll" size="16896">
+      <assemblyIdentity name="Xanadu.DataGridViewX" version="5.1.2.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>Q2jod+vKdLplR3MT938HBG2hzKjfvaEnbL/vF6JpN6U=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ja\Xanadu.DataGridViewX.resources.dll" size="5120">
+      <assemblyIdentity name="Xanadu.DataGridViewX.resources" version="5.1.2.0" language="ja" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>51LFxMoXtlJqj6nVBJqtF4UhBbRI9CCAXrwhvedbeFA=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Xanadu.LocalizedAttributes.dll" size="5120">
+      <assemblyIdentity name="Xanadu.LocalizedAttributes" version="2.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>e09jA7deR67wP8tubn4YKUxjyA4vEzzF4X0Rsi+WBN4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

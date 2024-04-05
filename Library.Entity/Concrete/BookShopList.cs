@@ -8,6 +8,7 @@ namespace Library.Entity.Concrete
 {
     public class BookShopList
     {
+        public string UserName {  get; set; }
         public int Id { get;set; }
         public string Name { get;set; }
         public string Category { get; set; }

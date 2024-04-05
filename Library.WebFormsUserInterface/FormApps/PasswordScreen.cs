@@ -16,12 +16,15 @@ using Library.Entity.Concrete;
 using System.Data.SqlClient;
 using Library.WebFormsUserInterface.FormApps;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using Library.Business.Concrete;
+using Library.DataAccess.Concrete.ADONET;
+using Library.DataAccess.Abstract.EntityFramework;
 
 namespace LibraryManagementSystem
 {
     public partial class PasswordScreen : Form
     {
-        public string Framework;
+        public string _framework;
         public string _userName;
 
         public PasswordScreen()
@@ -74,22 +77,8 @@ namespace LibraryManagementSystem
             if (ValidateUser(userName, password) == true)
             {
                 _userName = userName;
-                if (ADONETradioButton.Checked)
-                {
-                    Framework = "ADONET";
-                    this.Dispose();
-
-                }
-                else if (EfRadioButton.Checked)
-                {
-                    Framework = "EntityFramework";
-                    this.Dispose();
-                }
-                else
-                {
-                    MessageBox.Show("Select a Framework.");
-                    return;
-                }
+                _framework = "EntityFramework";
+                this.Dispose();   
             }
 
             else
@@ -121,23 +110,8 @@ namespace LibraryManagementSystem
             return false;
         }
 
-        private void ADONETradioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            if (EfRadioButton.Checked)
-            {
-                ADONETradioButton.Checked = false;
-            }
-        }
-
-        private void EfRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            if (ADONETradioButton.Checked)
-            {
-                EfRadioButton.Checked = false;
-            }
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+      
+        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox1.Checked)
             {

@@ -191,10 +191,16 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowDrop = true;
+            this.dataGridView1.AllowUserToOrderColumns = true;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.EnableHeadersVisualStyles = false;
+            this.dataGridView1.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.dataGridView1.Location = new System.Drawing.Point(24, 49);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(565, 354);
+            this.dataGridView1.Size = new System.Drawing.Size(565, 312);
             this.dataGridView1.TabIndex = 60;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
@@ -211,9 +217,10 @@
             this.groupBox1.Controls.Add(this.tbAddReadPages);
             this.groupBox1.Controls.Add(this.tbAddTotalOfPages);
             this.groupBox1.Controls.Add(this.AddButton);
-            this.groupBox1.Location = new System.Drawing.Point(24, 423);
+            this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.groupBox1.Location = new System.Drawing.Point(24, 395);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(268, 244);
+            this.groupBox1.Size = new System.Drawing.Size(268, 263);
             this.groupBox1.TabIndex = 61;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Add Book";
@@ -221,7 +228,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 166);
+            this.label6.Location = new System.Drawing.Point(15, 176);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(61, 13);
             this.label6.TabIndex = 10;
@@ -230,7 +237,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 131);
+            this.label5.Location = new System.Drawing.Point(15, 141);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(63, 13);
             this.label5.TabIndex = 9;
@@ -239,7 +246,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(20, 94);
+            this.label4.Location = new System.Drawing.Point(29, 104);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 13);
             this.label4.TabIndex = 8;
@@ -248,7 +255,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(24, 64);
+            this.label3.Location = new System.Drawing.Point(38, 73);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 13);
             this.label3.TabIndex = 7;
@@ -257,7 +264,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(27, 32);
+            this.label2.Location = new System.Drawing.Point(41, 41);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 6;
@@ -267,7 +274,7 @@
             // 
             this.tbAddName.BackColor = System.Drawing.SystemColors.Control;
             this.tbAddName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbAddName.Location = new System.Drawing.Point(77, 29);
+            this.tbAddName.Location = new System.Drawing.Point(86, 39);
             this.tbAddName.Name = "tbAddName";
             this.tbAddName.Size = new System.Drawing.Size(138, 20);
             this.tbAddName.TabIndex = 5;
@@ -276,7 +283,7 @@
             // 
             this.tbAddAuthor.BackColor = System.Drawing.SystemColors.Control;
             this.tbAddAuthor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbAddAuthor.Location = new System.Drawing.Point(77, 61);
+            this.tbAddAuthor.Location = new System.Drawing.Point(86, 71);
             this.tbAddAuthor.Name = "tbAddAuthor";
             this.tbAddAuthor.Size = new System.Drawing.Size(138, 20);
             this.tbAddAuthor.TabIndex = 4;
@@ -285,7 +292,7 @@
             // 
             this.tbAddCategory.BackColor = System.Drawing.SystemColors.Control;
             this.tbAddCategory.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbAddCategory.Location = new System.Drawing.Point(77, 94);
+            this.tbAddCategory.Location = new System.Drawing.Point(86, 104);
             this.tbAddCategory.Name = "tbAddCategory";
             this.tbAddCategory.Size = new System.Drawing.Size(138, 20);
             this.tbAddCategory.TabIndex = 3;
@@ -294,7 +301,7 @@
             // 
             this.tbAddReadPages.BackColor = System.Drawing.SystemColors.Control;
             this.tbAddReadPages.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbAddReadPages.Location = new System.Drawing.Point(76, 128);
+            this.tbAddReadPages.Location = new System.Drawing.Point(85, 138);
             this.tbAddReadPages.Name = "tbAddReadPages";
             this.tbAddReadPages.Size = new System.Drawing.Size(138, 20);
             this.tbAddReadPages.TabIndex = 2;
@@ -303,7 +310,7 @@
             // 
             this.tbAddTotalOfPages.BackColor = System.Drawing.SystemColors.Control;
             this.tbAddTotalOfPages.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbAddTotalOfPages.Location = new System.Drawing.Point(76, 163);
+            this.tbAddTotalOfPages.Location = new System.Drawing.Point(85, 173);
             this.tbAddTotalOfPages.Name = "tbAddTotalOfPages";
             this.tbAddTotalOfPages.Size = new System.Drawing.Size(138, 20);
             this.tbAddTotalOfPages.TabIndex = 1;
@@ -315,7 +322,7 @@
             this.AddButton.FlatAppearance.BorderSize = 0;
             this.AddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.AddButton.Location = new System.Drawing.Point(76, 206);
+            this.AddButton.Location = new System.Drawing.Point(85, 214);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(138, 23);
             this.AddButton.TabIndex = 0;
@@ -336,9 +343,10 @@
             this.groupBox2.Controls.Add(this.tbUpdateCategory);
             this.groupBox2.Controls.Add(this.tbUpdateTotalOfPages);
             this.groupBox2.Controls.Add(this.tbUpdateReadPages);
-            this.groupBox2.Location = new System.Drawing.Point(313, 424);
+            this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.groupBox2.Location = new System.Drawing.Point(313, 395);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(276, 243);
+            this.groupBox2.Size = new System.Drawing.Size(276, 263);
             this.groupBox2.TabIndex = 62;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Update Book";
@@ -377,7 +385,7 @@
             this.UpdateButton.FlatAppearance.BorderSize = 0;
             this.UpdateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.UpdateButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.UpdateButton.Location = new System.Drawing.Point(87, 205);
+            this.UpdateButton.Location = new System.Drawing.Point(87, 203);
             this.UpdateButton.Name = "UpdateButton";
             this.UpdateButton.Size = new System.Drawing.Size(138, 23);
             this.UpdateButton.TabIndex = 1;
@@ -574,6 +582,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.labelOfReadBooks);
             this.Controls.Add(this.labelOfReadPages);
             this.Controls.Add(this.DeleteButton);
@@ -606,8 +615,6 @@
         }
 
         #endregion
-
-        private CircularProgressBar.CircularProgressBar circularProgressBar1;
         private System.Windows.Forms.Button SelectColorButton;
         private System.Windows.Forms.ComboBox cbxSwitchColor;
         private System.Windows.Forms.Panel panelBookData;
@@ -647,5 +654,6 @@
         private System.Windows.Forms.Button DeleteButton;
         private System.Windows.Forms.Label labelOfReadPages;
         private System.Windows.Forms.Label labelOfReadBooks;
+        public CircularProgressBar.CircularProgressBar circularProgressBar1;
     }
 }

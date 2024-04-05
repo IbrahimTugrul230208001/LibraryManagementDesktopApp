@@ -14,11 +14,18 @@ namespace Library.DataAccess.Concrete.ADONET
 {
     public class ADONET : ILibraryDal
     {
+        private string _userName;
+        public ADONET(string userName)
+        {
+            _userName = userName;
+        }
+
         SqlConnection _connection = new SqlConnection(@"Server=(localdb)\mssqllocaldb;initial catalog=LibraryManagement;integrated security=True");
         public List<Libraries> GetAll()
         {
             ConnectionControl();
-            SqlCommand command = new SqlCommand("SELECT Id, Name, Author, Category, completedPages, totalOfPages FROM Libraries", _connection);
+            SqlCommand command = new SqlCommand("SELECT Id,Name,Author,Category,completedPages,totalOfPages FROM Libraries WHERE UserName = @UserName", _connection);
+            command.Parameters.AddWithValue("@UserName", _userName);
             SqlDataReader reader = command.ExecuteReader();
             List<Libraries> libraries = new List<Libraries>();
 
@@ -34,26 +41,15 @@ namespace Library.DataAccess.Concrete.ADONET
                     Category = reader["Category"].ToString(),
                     CompletedPages = Convert.ToInt32(reader["CompletedPages"]),
                     TotalOfPages = Convert.ToInt32(reader["TotalofPages"]),
-
-
-
                 };
-
-
                 libraries.Add(library);
-
             }
-
-
             reader.Close();
             _connection.Close();
             return libraries;
 
-
-
         }
        
-
         private void ConnectionControl()
         {
             if (_connection.State == ConnectionState.Closed)
@@ -66,7 +62,8 @@ namespace Library.DataAccess.Concrete.ADONET
         public void Add(Libraries library)
         {
             ConnectionControl();
-            SqlCommand command = new SqlCommand("Insert into Libraries values(@Name,@Author,@Category,@CompletedPages,@TotalofPages)", _connection);
+            SqlCommand command = new SqlCommand($"Insert into Libraries VALUES(@UserName,@Name,@Author,@Category,@CompletedPages,@TotalOfPages)", _connection);
+            command.Parameters.AddWithValue("@UserName", _userName);
             command.Parameters.AddWithValue("@Name", library.Name);
             command.Parameters.AddWithValue("@Author", library.Author);
             command.Parameters.AddWithValue("@Category", library.Category);
@@ -79,7 +76,8 @@ namespace Library.DataAccess.Concrete.ADONET
         public void Update(Libraries library)
         {
             ConnectionControl();
-            SqlCommand command = new SqlCommand("Update Libraries Set Name=@Name,Author=@Author,Category=@Category,CompletedPages=@CompletedPages,TotalOfPages=@TotalofPages where Id = @Id", _connection);
+            SqlCommand command = new SqlCommand($"Update Libraries Set UserName = @UserName, Name=@Name,Author=@Author,Category=@Category,CompletedPages=@CompletedPages,TotalOfPages=@TotalofPages where Id = @Id", _connection);
+            command.Parameters.AddWithValue("@UserName", _userName);
             command.Parameters.AddWithValue("@Id", library.Id);
             command.Parameters.AddWithValue("@Name", library.Name);
             command.Parameters.AddWithValue("@Author", library.Author);
@@ -95,7 +93,8 @@ namespace Library.DataAccess.Concrete.ADONET
         {
             int Id = library.Id;
             ConnectionControl();
-            SqlCommand command = new SqlCommand("" + "Delete from Libraries where Id=@Id", _connection);
+            SqlCommand command = new SqlCommand("Delete from Libraries where Id=@Id AND UserName = @UserName", _connection);
+            command.Parameters.AddWithValue("@UserName", _userName);
             command.Parameters.AddWithValue("@Id", Id);
             command.ExecuteNonQuery();
             _connection.Close();
@@ -104,7 +103,8 @@ namespace Library.DataAccess.Concrete.ADONET
         public List<Libraries> SearchBookByName(string key)
         {
             ConnectionControl();
-            SqlCommand command = new SqlCommand("Select * from Libraries WHERE Name LIKE '%' + @Key + '%' ", _connection); // Associate the SqlCommand with the SqlConnection
+            SqlCommand command = new SqlCommand($"Select * from Libraries WHERE Name LIKE '%' + @Key + '%' AND UserName = @UserName ", _connection); // Associate the SqlCommand with the SqlConnection
+            command.Parameters.AddWithValue("@UserName", _userName);
             command.Parameters.AddWithValue("@Key", key);
             command.ExecuteNonQuery();
             SqlDataReader reader = command.ExecuteReader();
@@ -132,7 +132,8 @@ namespace Library.DataAccess.Concrete.ADONET
         public List<Libraries> SearchBooksByAuthor(string key)
         {
             ConnectionControl();
-            SqlCommand command = new SqlCommand("Select * from Libraries WHERE Author LIKE '%' + @Key + '%' ", _connection); // Associate the SqlCommand with the SqlConnection
+            SqlCommand command = new SqlCommand($"Select * from Libraries WHERE Author LIKE '%' + @Key + '%' AND UserName = @UserName ", _connection); // Associate the SqlCommand with the SqlConnection
+            command.Parameters.AddWithValue("@UserName", _userName);
             command.Parameters.AddWithValue("@Key", key);
             command.ExecuteNonQuery();
             SqlDataReader reader = command.ExecuteReader();
@@ -162,7 +163,8 @@ namespace Library.DataAccess.Concrete.ADONET
         public List<Libraries> SearchBookByCategory(string key)
         {
             ConnectionControl();
-            SqlCommand command = new SqlCommand("Select * from Libraries WHERE Category LIKE '%' + @Key + '%' ", _connection); // Associate the SqlCommand with the SqlConnection
+            SqlCommand command = new SqlCommand($"Select * from Libraries WHERE Category LIKE '%' + @Key + '%' AND UserName = @UserName", _connection); // Associate the SqlCommand with the SqlConnection
+            command.Parameters.AddWithValue("@UserName", _userName);
             command.Parameters.AddWithValue("@Key", key);
             command.ExecuteNonQuery();
             SqlDataReader reader = command.ExecuteReader();
@@ -192,7 +194,8 @@ namespace Library.DataAccess.Concrete.ADONET
         public Dictionary<string, int> CountBooksByCategory(out int totalBooks)
         {
             ConnectionControl();
-            SqlCommand command = new SqlCommand("SELECT Category, COUNT(*) AS Count FROM Libraries GROUP BY Category", _connection);
+            SqlCommand command = new SqlCommand($"SELECT Category, COUNT(*) AS Count FROM Libraries WHERE UserName = @UserName GROUP BY Category", _connection);
+            command.Parameters.AddWithValue("@UserName", _userName);
             SqlDataReader reader = command.ExecuteReader();
             Dictionary<string, int> categoryCounts = new Dictionary<string, int>();
             totalBooks = 0;
@@ -214,7 +217,9 @@ namespace Library.DataAccess.Concrete.ADONET
         public List<Libraries> SearchCompletedBooks()
         {
             ConnectionControl();
-            SqlCommand command = new SqlCommand("SELECT Id, Name, Author, Category, CompletedPages, TotalOfPages, (CONVERT(decimal(5, 2), CompletedPages) / NULLIF(TotalofPages, 0)) * 100 AS [CompletionRate] FROM Libraries WHERE (CONVERT(decimal(5, 2), CompletedPages) / NULLIF(TotalofPages, 0)) * 100 = 100", _connection);
+            SqlCommand command = new SqlCommand($"SELECT Id, Name, Author, Category, CompletedPages, TotalOfPages," +
+                $" (CONVERT(decimal(5, 2), CompletedPages) / NULLIF(TotalofPages, 0)) * 100 AS [CompletionRate] FROM Libraries WHERE (CONVERT(decimal(5, 2), CompletedPages) / NULLIF(TotalofPages, 0)) * 100 = 100 AND UserName = @UserName", _connection);
+            command.Parameters.AddWithValue("@UserName", _userName);
             SqlDataReader reader = command.ExecuteReader();
             List<Libraries> list = new List<Libraries>();
 
@@ -242,7 +247,8 @@ namespace Library.DataAccess.Concrete.ADONET
         public List<BookShopList> GetBookShopList()
         {
             ConnectionControl();
-            SqlCommand command = new SqlCommand("SELECT Id, Name, Author, Category, Price, TotalOfPages,UserScore FROM BookShopLists", _connection);
+            SqlCommand command = new SqlCommand($"SELECT Id, Name, Author, Category, Price, TotalOfPages,UserScore FROM BookShopLists WHERE UserName = @UserName", _connection);
+            command.Parameters.AddWithValue("@UserName", _userName);
             SqlDataReader reader = command.ExecuteReader();
             List<BookShopList> bookShopList = new List<BookShopList>();
 
@@ -268,7 +274,8 @@ namespace Library.DataAccess.Concrete.ADONET
         public void UpdateShopList(BookShopList bookShopList)
         {
             ConnectionControl();
-            SqlCommand command = new SqlCommand("Update BookShopLists Set Name=@Name,Author=@Author,Category=@Category,Price=@Price, TotalOfPages = @TotalOfPages, UserScore = @UserScore where Id = @Id", _connection);
+            SqlCommand command = new SqlCommand($"Update BookShopLists Set Name=@Name,Author=@Author,Category=@Category,Price=@Price, TotalOfPages = @TotalOfPages, UserScore = @UserScore WHERE Id = @Id AND UserName = @UserName", _connection);
+            command.Parameters.AddWithValue("@UserName", _userName);
             command.Parameters.AddWithValue("@Id", bookShopList.Id);
             command.Parameters.AddWithValue("@Name", bookShopList.Name);
             command.Parameters.AddWithValue("@Author", bookShopList.Author);
@@ -283,7 +290,8 @@ namespace Library.DataAccess.Concrete.ADONET
         public void AddToShopList(BookShopList bookShopList)
         {
             ConnectionControl();
-            SqlCommand command = new SqlCommand("Insert into BookShopLists Values(@Name,@Author,@Category,@Price,@TotalOfPages,@UserScore)", _connection);
+            SqlCommand command = new SqlCommand($"Insert INTO BookShopLists Values(@UserName,@Name,@Author,@Category,@Price,@TotalOfPages,@UserScore)", _connection);
+            command.Parameters.AddWithValue("@UserName", _userName);
             command.Parameters.AddWithValue("@Name", bookShopList.Name);
             command.Parameters.AddWithValue("@Author", bookShopList.Author);
             command.Parameters.AddWithValue("@Category", bookShopList.Category);
@@ -298,7 +306,8 @@ namespace Library.DataAccess.Concrete.ADONET
         {
             int ID = bookShopList.Id;
             ConnectionControl();
-            SqlCommand command = new SqlCommand("" + "Delete from BookShopLists where Id=@Id", _connection);
+            SqlCommand command = new SqlCommand($"Delete from BookShopLists where Id=@Id WHERE UserName = @UserName", _connection);
+            command.Parameters.AddWithValue("@UserName", _userName);
             command.Parameters.AddWithValue("@Id", ID);
             command.ExecuteNonQuery();
             _connection.Close();
@@ -307,7 +316,7 @@ namespace Library.DataAccess.Concrete.ADONET
         public List<BookShopList> SearchInBookShopListByName(string key)
         {
             ConnectionControl();
-            SqlCommand command = new SqlCommand("Select * from Bookshoplists WHERE Name LIKE '%' + @Key + '%' ", _connection);
+            SqlCommand command = new SqlCommand($"Select * from Bookshoplists WHERE Name LIKE '%' + @Key + '%' AND WHERE UserName = @UserName", _connection);
             command.Parameters.AddWithValue("@Key", key);
             command.ExecuteNonQuery();
             SqlDataReader reader = command.ExecuteReader();
@@ -336,7 +345,7 @@ namespace Library.DataAccess.Concrete.ADONET
         public List<BookShopList> SearchInBookShopListByAuthor(string key)
         {
             ConnectionControl();
-            SqlCommand command = new SqlCommand("Select * from Bookshoplists WHERE Author LIKE '%' + @Key + '%' ", _connection);
+            SqlCommand command = new SqlCommand($"Select * from Bookshoplists WHERE Author LIKE '%' + @Key + '%' AND WHERE UserName = @UserName", _connection);
             command.Parameters.AddWithValue("@Key", key);
             command.ExecuteNonQuery();
             SqlDataReader reader = command.ExecuteReader();
@@ -364,7 +373,7 @@ namespace Library.DataAccess.Concrete.ADONET
         public List<BookShopList> SearchInBookShopListByCategory(string key)
         {
             ConnectionControl();
-            SqlCommand command = new SqlCommand("Select * from BookShopLists WHERE Cateogry LIKE '%' + @Key + '%' ",_connection);
+            SqlCommand command = new SqlCommand($"Select * from BookShopLists WHERE Cateogry LIKE '%' + @Key + '%' AND WHERE UserName = @UserName", _connection);
             command.Parameters.AddWithValue("@Key", key);
             command.ExecuteNonQuery();
             List<BookShopList> list = new List<BookShopList>();
@@ -394,7 +403,8 @@ namespace Library.DataAccess.Concrete.ADONET
         public Dictionary<string, int> CountBooksByCategoryInBookShopList(out int totalBooks)
         {
             ConnectionControl();
-            SqlCommand command = new SqlCommand("SELECT Category, COUNT(*) AS Count FROM BookShopLists GROUP BY Category", _connection);
+            SqlCommand command = new SqlCommand($"SELECT Category, COUNT(*) AS Count FROM BookShopLists WHERE UserName = @UserName GROUP BY Category", _connection);
+            command.Parameters.AddWithValue("@UserName", _userName);
             SqlDataReader reader = command.ExecuteReader();
             Dictionary<string, int> categoryCounts = new Dictionary<string, int>();
             totalBooks = 0;
@@ -415,16 +425,17 @@ namespace Library.DataAccess.Concrete.ADONET
 
         //PlannedBooksToRead
 
-        public List<PlannedBook> GetPlannedBooks()
+        public List<UserReadingPlan> GetPlannedBooks()
         {
             ConnectionControl();
-            SqlCommand command = new SqlCommand("SELECT Id, Name, Author, Category, CompletedPages, TotalOfPages FROM PlannedBooks",_connection);
+            SqlCommand command = new SqlCommand($"SELECT Id, Name, Author, Category, CompletedPages, TotalOfPages FROM UserReadingPlans WHERE UserName = @UserName",_connection);
+            command.Parameters.AddWithValue("@UserName", _userName);
             SqlDataReader reader = command.ExecuteReader();
-            List<PlannedBook> list = new List<PlannedBook>();
+            List<UserReadingPlan> list = new List<UserReadingPlan>();
 
             while (reader.Read())
             {
-                PlannedBook book = new PlannedBook()
+                UserReadingPlan book = new UserReadingPlan()
                 {
                     Id = Convert.ToInt32(reader["Id"]),
                     Name = Convert.ToString(reader["Name"]),
@@ -444,10 +455,11 @@ namespace Library.DataAccess.Concrete.ADONET
             
         }
 
-        public void AddBookToPlannedBooksList(PlannedBook plannedBook)
+        public void AddBookToPlannedBooksList(UserReadingPlan plannedBook)
         {
             ConnectionControl();
-            SqlCommand command = new SqlCommand("INSERT INTO PlannedBooks VALUES (@Name, @Author, @Category, @CompletedPages, @TotalofPages)", _connection);
+            SqlCommand command = new SqlCommand("INSERT INTO UserReadingPlans VALUES(@UserName,@Name,@Author,@Category,@CompletedPages,@TotalofPages)", _connection);
+            command.Parameters.AddWithValue("@UserName",_userName);
             command.Parameters.AddWithValue("@Name", plannedBook.Name);
             command.Parameters.AddWithValue("@Author", plannedBook.Author);
             command.Parameters.AddWithValue("@Category", plannedBook.Category);
@@ -457,10 +469,11 @@ namespace Library.DataAccess.Concrete.ADONET
             _connection.Close();
         }
 
-        public void UpdatePlannedBookList(PlannedBook plannedBook)
+        public void UpdatePlannedBookList(UserReadingPlan plannedBook)
         {
             ConnectionControl();
-            SqlCommand command = new SqlCommand("Update PlannedBooks Set Name=@Name,Author=@Author,Category=@Category,CompletedPages=@CompletedPages,TotalOfPages = @TotalOfPages where Id = @Id", _connection);
+            SqlCommand command = new SqlCommand("Update UserReadingPlans Set UserName = @UserName,Name=@Name,Author=@Author,Category=@Category,CompletedPages=@CompletedPages,TotalOfPages = @TotalOfPages where Id = @Id",_connection);
+            command.Parameters.AddWithValue("@UserName",_userName);
             command.Parameters.AddWithValue("@Id", plannedBook.Id);
             command.Parameters.AddWithValue("@Name", plannedBook.Name);
             command.Parameters.AddWithValue("@Author", plannedBook.Author);
@@ -471,23 +484,16 @@ namespace Library.DataAccess.Concrete.ADONET
             _connection.Close();
         }
 
-        public void DeletePlannedBookList(PlannedBook plannedBook)
+        public void DeletePlannedBookList(UserReadingPlan plannedBook)
         {
             ConnectionControl();
-            SqlCommand command = new SqlCommand("Delete from PlannedBooks WHERE Id = @Id", _connection);
+            SqlCommand command = new SqlCommand($"Delete from UserReadingPlans WHERE Id = @Id AND UserName = @UserName", _connection);
+            command.Parameters.AddWithValue("@UserName", _userName);
             command.Parameters.AddWithValue("@Id", plannedBook.Id);
             command.ExecuteNonQuery();
             _connection.Close();
         }   
         
-        public void AddNewUser(UserAccount userAccount)
-        {
-            ConnectionControl();
-            SqlCommand command = new SqlCommand("Insert INTO UserAccounts Values (@UserName,@Password)", _connection);
-            command.Parameters.AddWithValue("@UserName",userAccount.UserName);
-            command.Parameters.AddWithValue("@Password", userAccount.Password);
-            command.ExecuteNonQuery();
-            _connection.Close();
-        }
+       
     }
 }

@@ -19,28 +19,30 @@ namespace Library.WebFormsUserInterface
     public partial class BookShopListPage : UserControl
     {
         private string _framework;
+        private string _userName;
 
-        public BookShopListPage(string framework)
+        public BookShopListPage(string framework, string userName)
         {
             InitializeComponent();
             _framework = framework;
-            SelectFramework(framework);
+            _userName = userName;
+            SelectFramework(framework,userName);
 
         }
 
         public LibraryManager _libraryManager;
 
-        public void SelectFramework(string framework)
+        public void SelectFramework(string framework,string userName)
         {
             if (framework == "ADONET")
             {
-                _libraryManager = new LibraryManager(new ADONET());
+                _libraryManager = new LibraryManager(new ADONET(userName));
 
 
             }
             else if (framework == "EntityFramework")
             {
-                _libraryManager = new LibraryManager(new EntityFramework());
+                _libraryManager = new LibraryManager(new EntityFramework(userName));
 
             }
             else
@@ -58,13 +60,14 @@ namespace Library.WebFormsUserInterface
 
         private void SetDataGridColumnWidths()
         {
-            dataGridView1.Columns[0].Width = 40;
-            dataGridView1.Columns[1].Width = 180;
-            dataGridView1.Columns[2].Width = 85;
-            dataGridView1.Columns[3].Width = 105;
-            dataGridView1.Columns[4].Width = 80;
-            dataGridView1.Columns[5].Width = 90;
-            dataGridView1.Columns[6].Width = 75;
+            dataGridView1.Columns["UserName"].Visible = false;
+            dataGridView1.Columns[1].Width = 40;
+            dataGridView1.Columns[2].Width = 180;
+            dataGridView1.Columns[3].Width = 85;
+            dataGridView1.Columns[4].Width = 105;
+            dataGridView1.Columns[5].Width = 80;
+            dataGridView1.Columns[6].Width = 90;
+            dataGridView1.Columns[7].Width = 75;
         }
 
         private void LoadBookShopList()
@@ -115,14 +118,14 @@ namespace Library.WebFormsUserInterface
         }
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            tbUpdateName.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[1].Value);
-            tbUpdateAuthor.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[2].Value);               
-            tbUpdateCategory.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[3].Value);
-            tbUpdatePrice.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[4].Value);
-            tbUpdateTotalOfPages.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[5].Value);
-            tbUpdateUserScore.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[6].Value);
-            circularProgressBarUserScore.Value = Convert.ToInt32(dataGridView1.CurrentRow.Cells[6].Value);
-            decimal userScoreOutOfFive = Convert.ToDecimal(Convert.ToDecimal(dataGridView1.CurrentRow.Cells[6].Value) / 20);
+            tbUpdateName.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[2].Value);
+            tbUpdateAuthor.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[3].Value);               
+            tbUpdateCategory.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[4].Value);
+            tbUpdatePrice.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[5].Value);
+            tbUpdateTotalOfPages.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[6].Value);
+            tbUpdateUserScore.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[7].Value);
+            circularProgressBarUserScore.Value = Convert.ToInt32(dataGridView1.CurrentRow.Cells[7].Value);
+            decimal userScoreOutOfFive = Convert.ToDecimal(Convert.ToDecimal(dataGridView1.CurrentRow.Cells[7].Value) / 20);
             circularProgressBarUserScore.Text = userScoreOutOfFive.ToString("0.00",CultureInfo.InvariantCulture);
         }
 
@@ -130,10 +133,11 @@ namespace Library.WebFormsUserInterface
         {
             _libraryManager.Add(new Libraries
             {
-                Name = Convert.ToString(dataGridView1.CurrentRow.Cells[1].Value),
-                Author = Convert.ToString(dataGridView1.CurrentRow.Cells[2].Value),
-                TotalOfPages = Convert.ToInt32(dataGridView1.CurrentRow.Cells[5].Value),
-                Category = Convert.ToString(dataGridView1.CurrentRow.Cells[3].Value),
+                UserName = _userName,
+                Name = Convert.ToString(dataGridView1.CurrentRow.Cells[2].Value),
+                Author = Convert.ToString(dataGridView1.CurrentRow.Cells[3].Value),
+                TotalOfPages = Convert.ToInt32(dataGridView1.CurrentRow.Cells[4].Value),
+                Category = Convert.ToString(dataGridView1.CurrentRow.Cells[5].Value),
                 CompletedPages = 0,
             });
         }
@@ -142,6 +146,7 @@ namespace Library.WebFormsUserInterface
         {
             _libraryManager.AddToShopList(new BookShopList
             {
+                UserName = _userName,
                 Name = tbAddName.Text,
                 Author = tbAddAuthor.Text,
                 Category = tbAddCategory.Text,
@@ -158,7 +163,8 @@ namespace Library.WebFormsUserInterface
         {
             _libraryManager.UpdateShopList(new BookShopList
             {
-                Id = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value),
+                UserName = _userName,
+                Id = Convert.ToInt32(dataGridView1.CurrentRow.Cells[1].Value),
                 Name = tbUpdateName.Text,
                 Author = tbUpdateAuthor.Text,
                 Category = tbUpdateCategory.Text,
@@ -175,7 +181,7 @@ namespace Library.WebFormsUserInterface
         {
             _libraryManager.DeleteFromBookShopList(new BookShopList
             {
-                Id = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value),
+                Id = Convert.ToInt32(dataGridView1.CurrentRow.Cells[1].Value),
             });
             MessageBox.Show("The Book Has Been Deleted!");
             LoadBookShopList();

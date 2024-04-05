@@ -1,8 +1,10 @@
-﻿using LibraryManagementSystem;
+﻿using Library.Business.Concrete;
+using LibraryManagementSystem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Versioning;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,12 +18,11 @@ namespace Library.WebFormsUserInterface
         [STAThread]
         static void Main()
         {
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             PasswordScreen passwordScreen = new PasswordScreen();
             passwordScreen.ShowDialog();
-            string selectedFramework = passwordScreen.Framework;
+            string selectedFramework = passwordScreen._framework;
             string selectedUserName = passwordScreen._userName;
             Form1 form1 = new Form1(selectedFramework, selectedUserName);
             Application.Run(form1);

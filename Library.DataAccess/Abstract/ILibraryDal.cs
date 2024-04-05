@@ -28,10 +28,10 @@ namespace Library.DataAccess.Abstract
         List<BookShopList> SearchInBookShopListByAuthor(string key);
         List<BookShopList> SearchInBookShopListByCategory(string key);
         Dictionary<string, int> CountBooksByCategoryInBookShopList(out int totalBooks);
-        List<PlannedBook> GetPlannedBooks();
-        void AddBookToPlannedBooksList(PlannedBook plannedBook);
-        void UpdatePlannedBookList(PlannedBook plannedBook);
-        void DeletePlannedBookList(PlannedBook plannedBook);
-        void AddNewUser(UserAccount userAccount);
+        List<UserReadingPlan> GetPlannedBooks();
+        void AddBookToPlannedBooksList(UserReadingPlan plannedBook);
+        void UpdatePlannedBookList(UserReadingPlan plannedBook);
+        void DeletePlannedBookList(UserReadingPlan plannedBook);
+        
     }
 }

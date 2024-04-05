@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Concrete\ADONET\ADONET.cs" />
+    <Compile Include="Concrete\ADONET\AdonetUserEntry.cs" />
     <Compile Include="Concrete\EntityFramework\EntityFramework.cs" />
     <Compile Include="Abstract\ILibraryDal.cs" />
     <Compile Include="Concrete\EntityFramework\LibraryContext.cs" />

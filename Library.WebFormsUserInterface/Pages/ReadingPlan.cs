@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -18,29 +19,31 @@ namespace Library.WebFormsUserInterface.FormApps
     public partial class ReadingPlan : UserControl
     {
         private string _selectedCompletedPages, _selectedTotalOfPages,
-           _selectedBookName, _SelectedBarColor,_AuthorOfSelectedBook,_CategoryOfSelectedBook;
+           _selectedBookName, _selectedBarColor,_AuthorOfSelectedBook,_CategoryOfSelectedBook;
         private decimal _selectedCompletionRate;
-        private int _TotalOfBooksRead, _TotalOfPagesHaveBeenRead;
+        private int _TotalOfBooksRead, _TotalOfPagesHaveBeenRead,_selectedBookID;
         public LibraryManager _libraryManager;
-
-        public ReadingPlan(string framework)
+        private string _userName;
+        public ReadingPlan(string framework, string userName)
         {
             InitializeComponent();
-            SelectFramework(framework);
+            SelectFramework(framework,userName);
+            _userName = userName;
         }
 
-        public void SelectFramework(string framework)
+        public void SelectFramework(string framework, string userName)
         {
             if (framework == "ADONET")
             {
-                _libraryManager = new LibraryManager(new ADONET());
+                _libraryManager = new LibraryManager(new ADONET(userName));
             }
-
+           
             else if (framework == "EntityFramework")
             {
-                _libraryManager = new LibraryManager(new EntityFramework());
+                _libraryManager = new LibraryManager(new EntityFramework(userName));
 
             }
+            
             else
             {
                 throw new ArgumentException("Invalid framework selection");
@@ -51,12 +54,16 @@ namespace Library.WebFormsUserInterface.FormApps
         {
             string selectedColor = cbxSwitchColor.SelectedItem.ToString();
 
-            if (selectedColor != _SelectedBarColor)
+            if (selectedColor != _selectedBarColor)
             {
+                SqlConnection connection = new SqlConnection(connectionString);
+                connection.Open();
+                SqlCommand command = new SqlCommand("Update StoredUserData SET SelectedBarColor = @SelectedBarColor WHERE UserName = @UserName",connection);
+                command.Parameters.AddWithValue("@UserName",_userName);
+                command.Parameters.AddWithValue("@SelectedBarColor",selectedColor);
+                command.ExecuteNonQuery();
+                connection.Close();
                 ColorSelection(selectedColor);
-                _SelectedBarColor = selectedColor;
-                Properties.Settings.Default.SelectedBarColor = _SelectedBarColor;
-                Properties.Settings.Default.Save();
             }
         }
 
@@ -100,28 +107,25 @@ namespace Library.WebFormsUserInterface.FormApps
 
         private void ReadingPlan_Load(object sender, EventArgs e)
         {
-            LoadSelectedBookData();
+            LoadSelectedUserData();
             UpdateCurrentlyReadingBookUI(_selectedBookName, _selectedCompletedPages, _selectedTotalOfPages, _selectedCompletionRate);
             LoadReadPagesAndBooksLabelsContent();
             DisplayBookAndPageDataPanels();
-            LoadCircularProgressBarData();
             LoadPlannedBooksToRead();
             SetDataGridColumnWidth();
         }
 
         private void SetDataGridColumnWidth()
         {
-            dataGridView1.Columns[0].Width = 32;
-            dataGridView1.Columns[1].Width = 170;
-            dataGridView1.Columns[2].Width = 85;
-            dataGridView1.Columns[3].Width = 70;
-            dataGridView1.Columns[4].Width = 90;
-            dataGridView1.Columns[5].Width = 75;
+            dataGridView1.Columns["UserName"].Visible = false;
+            dataGridView1.Columns[1].Width = 32;
+            dataGridView1.Columns[2].Width = 170;
+            dataGridView1.Columns[3].Width = 85;
+            dataGridView1.Columns[4].Width = 70;
+            dataGridView1.Columns[5].Width = 90;
+            dataGridView1.Columns[6].Width = 75;
         }
-        public void SetPanelData(string currentlyReading, string completedPages, string totalOfPages, decimal completionRate)
-        {
-            UpdateCurrentlyReadingBookUI(currentlyReading, completedPages, totalOfPages, completionRate);
-        }
+
         private void DisplayBookAndPageDataPanels()
         {
             Label lblTotalOfPages = new Label();
@@ -164,20 +168,21 @@ namespace Library.WebFormsUserInterface.FormApps
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            tbUpdateName.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[1].Value);
-            tbUpdateAuthor.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[2].Value);
-            tbUpdateCategory.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[3].Value);
-            tbUpdateReadPages.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[4].Value);
-            tbUpdateTotalOfPages.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[5].Value);
+            tbUpdateName.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[2].Value);
+            tbUpdateAuthor.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[3].Value);
+            tbUpdateCategory.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[4].Value);
+            tbUpdateReadPages.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[5].Value);
+            tbUpdateTotalOfPages.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[6].Value);
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            _libraryManager.AddToBookPlanList(new PlannedBook
+            _libraryManager.AddToBookPlanList(new UserReadingPlan
             {
-                Name = Convert.ToString(tbAddName.Text),
-                Author = Convert.ToString(tbAddAuthor.Text),
-                Category = Convert.ToString(tbAddCategory.Text),
+                UserName = _userName,
+                Name = tbAddName.Text,
+                Author = tbAddAuthor.Text,
+                Category = tbAddCategory.Text,
                 CompletedPages = Convert.ToInt32(tbAddReadPages.Text),
                 TotalOfPages = Convert.ToInt32(tbAddTotalOfPages.Text),
             });
@@ -188,27 +193,32 @@ namespace Library.WebFormsUserInterface.FormApps
 
         private void UpdateButton_Click(object sender, EventArgs e)
         {
-            _libraryManager.UpdateBookPlanList(new PlannedBook
+
+            _libraryManager.UpdateBookPlanList(new UserReadingPlan
             {
-                Id = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value),
+                UserName = _userName,
+                Id = Convert.ToInt32(dataGridView1.CurrentRow.Cells[1].Value),
                 Name = tbUpdateName.Text,
                 Author = tbUpdateAuthor.Text,
                 Category = tbUpdateCategory.Text,
                 TotalOfPages = Convert.ToInt32(tbUpdateTotalOfPages.Text),
-                CompletedPages = Convert.ToInt32(tbUpdateReadPages.Text),
+                CompletedPages = Convert.ToInt32(tbUpdateReadPages.Text)
             });
-
-            MessageBox.Show("The Book has Been Updated!");
-            int completedPages = Convert.ToInt32(tbUpdateReadPages.Text);
-            int totalOfPages = Convert.ToInt32(tbUpdateTotalOfPages.Text);
-            decimal completionRateDecimal = (decimal)completedPages / totalOfPages * 100;
-            int completionRateInt = (int)completionRateDecimal;
-            circularProgressBar1.Value = completionRateInt;
-            circularProgressBar1.Text = completionRateDecimal.ToString("0.00", CultureInfo.InvariantCulture);
-            SaveCircularProgressBarData(circularProgressBar1.Value, circularProgressBar1.Text);
-            UpdateCurrentlyReadingBookUI(tbUpdateName.Text, Convert.ToString(completedPages), Convert.ToString(totalOfPages), completionRateDecimal);
+            int bookID = Convert.ToInt32(dataGridView1.CurrentRow.Cells[1].Value);
+            if(bookID == _selectedBookID)
+            {
+                int completedPages = Convert.ToInt32(tbUpdateReadPages.Text);
+                int totalOfPages = Convert.ToInt32(tbUpdateTotalOfPages.Text);
+                decimal completionRateDecimal = (decimal)completedPages / totalOfPages * 100;
+                int completionRateInt = (int)completionRateDecimal;
+                circularProgressBar1.Value = completionRateInt;
+                circularProgressBar1.Text = completionRateDecimal.ToString("0.00", CultureInfo.InvariantCulture);
+                UpdateCurrentlyReadingBookUI(tbUpdateName.Text, Convert.ToString(completedPages), Convert.ToString(totalOfPages), completionRateDecimal);
+                SaveSelectedBookData();
+            }     
             ClearTextBoxes();
             LoadPlannedBooksToRead();
+            MessageBox.Show("The Book has Been Updated!");
         }
 
         private void IncrementReadPages_Click(object sender, EventArgs e)
@@ -217,8 +227,7 @@ namespace Library.WebFormsUserInterface.FormApps
             ++pageAmount;
             labelOfReadPages.Text = Convert.ToString(pageAmount);
             _TotalOfPagesHaveBeenRead = pageAmount;
-            Properties.Settings.Default.TotalOfPagesRead = _TotalOfPagesHaveBeenRead;
-            Properties.Settings.Default.Save();
+            SaveTotalOfBooksAndPagesLabelsData();
         }
 
         private void DecrementReadPages_Click(object sender, EventArgs e)
@@ -227,8 +236,7 @@ namespace Library.WebFormsUserInterface.FormApps
             --pageAmount;
             labelOfReadPages.Text = Convert.ToString(pageAmount);
             _TotalOfPagesHaveBeenRead = pageAmount;
-            Properties.Settings.Default.TotalOfPagesRead = _TotalOfPagesHaveBeenRead;
-            Properties.Settings.Default.Save();
+            SaveTotalOfBooksAndPagesLabelsData();
         }
 
         private void IncrementReadBooks_Click(object sender, EventArgs e)
@@ -237,8 +245,7 @@ namespace Library.WebFormsUserInterface.FormApps
             ++bookAmount;
             labelOfReadBooks.Text = Convert.ToString(bookAmount);
             _TotalOfBooksRead = bookAmount;
-            Properties.Settings.Default.TotalOfBooksRead = _TotalOfBooksRead;
-            Properties.Settings.Default.Save();
+            SaveTotalOfBooksAndPagesLabelsData();
         }
 
         private void DecrementReadBooks_Click(object sender, EventArgs e)
@@ -247,88 +254,122 @@ namespace Library.WebFormsUserInterface.FormApps
             --bookAmount;
             labelOfReadBooks.Text = Convert.ToString(bookAmount);
             _TotalOfBooksRead = bookAmount;
-            Properties.Settings.Default.TotalOfBooksRead = _TotalOfBooksRead;
-            Properties.Settings.Default.Save();
-        }
+            SaveTotalOfBooksAndPagesLabelsData();
 
+
+        }
         private void SetAsReading_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedCells.Count > 0)
             {
-                _selectedBookName = Convert.ToString(dataGridView1.CurrentRow.Cells[1].Value);
-                _selectedCompletedPages = Convert.ToString(dataGridView1.CurrentRow.Cells[4].Value);
-                _selectedTotalOfPages = Convert.ToString(dataGridView1.CurrentRow.Cells[5].Value);
-                _AuthorOfSelectedBook = Convert.ToString(dataGridView1.CurrentRow.Cells[2].Value);
-                _CategoryOfSelectedBook = Convert.ToString(dataGridView1.CurrentRow.Cells[3].Value);
-                int completedPages = Convert.ToInt32(dataGridView1.CurrentRow.Cells[4].Value);
-                int totalOfPages = Convert.ToInt32(dataGridView1.CurrentRow.Cells[5].Value);
+                _selectedBookName = Convert.ToString(dataGridView1.CurrentRow.Cells[2].Value);
+                _selectedCompletedPages = Convert.ToString(dataGridView1.CurrentRow.Cells[5].Value);
+                _selectedTotalOfPages = Convert.ToString(dataGridView1.CurrentRow.Cells[6].Value);
+                _AuthorOfSelectedBook = Convert.ToString(dataGridView1.CurrentRow.Cells[3].Value);
+                _CategoryOfSelectedBook = Convert.ToString(dataGridView1.CurrentRow.Cells[4].Value);
+                int completedPages = Convert.ToInt32(dataGridView1.CurrentRow.Cells[5].Value);
+                int totalOfPages = Convert.ToInt32(dataGridView1.CurrentRow.Cells[6].Value);
                 decimal completionRateDecimal = (decimal)completedPages / totalOfPages * 100;
                 _selectedCompletionRate = completionRateDecimal;
-                SaveSelectedBookData(_selectedBookName, _selectedCompletedPages, _selectedTotalOfPages, _selectedCompletionRate,_CategoryOfSelectedBook,_AuthorOfSelectedBook);
+                SaveSelectedBookData();
                 UpdateCurrentlyReadingBookUI(_selectedBookName, _selectedCompletedPages, _selectedTotalOfPages, _selectedCompletionRate);
-                SaveCircularProgressBarData(circularProgressBar1.Value, circularProgressBar1.Text);
             }
             else
             {
                 MessageBox.Show("Please select a book from the DataGridView.");
             }
         }
+      
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            _libraryManager.DeleteBookPlanList(new PlannedBook
+            _libraryManager.DeleteBookPlanList(new UserReadingPlan
             {
-                Id = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value),
+                Id = Convert.ToInt32(dataGridView1.CurrentRow.Cells[1].Value),
             });
             MessageBox.Show("Book has been Deleted!");
             LoadPlannedBooksToRead();
             ClearTextBoxes();
         }
 
-        private void SaveCircularProgressBarData(int value, string text)
+
+        private void SaveTotalOfBooksAndPagesLabelsData()
         {
-            Properties.Settings.Default.CircularProgressBarValue = value;
-            Properties.Settings.Default.CircularProgressBarText = text;
-            Properties.Settings.Default.Save();
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+            SqlCommand command = new SqlCommand("UPDATE StoredUserData SET TotalOfPagesRead = @TotalOfPagesRead, TotalOfBooksRead = @TotalOfBooksRead WHERE UserName = @UserName",connection);
+            command.Parameters.AddWithValue("@UserName", _userName);
+            command.Parameters.AddWithValue("@TotalOfPagesRead", _TotalOfPagesHaveBeenRead);
+            command.Parameters.AddWithValue("@TotalOfBooksRead", _TotalOfBooksRead);
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+       
+
+        public string connectionString = "server = (localdb)\\mssqllocaldb;initial catalog=LibraryManagement;integrated security=True";
+        private string query = "Select UserName,SelectedBookID,SelectedBookName,SelectedCompletedPages,SelectedTotalOfPages," +
+            "CircularProgressBarValue,CircularProgressBarText,TotalOfPagesRead,TotalOfBooksRead,SelectedBarColor,SelectedCompletionRate,AuthorOfSelectedBook,CategoryOfSelectedBook FROM StoredUserData";
+
+        private void LoadSelectedUserData()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString)) 
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        if (_userName == Convert.ToString(reader["UserName"]))
+                        {
+                            _AuthorOfSelectedBook = Convert.ToString(reader["AuthorOfSelectedBook"]);
+                            _CategoryOfSelectedBook = Convert.ToString(reader["CategoryOfSelectedBook"]);
+                            _selectedBookID = Convert.ToInt32(reader["SelectedBookId"]);
+                            _selectedBookName = Convert.ToString(reader["SelectedBookName"]);
+                            _selectedCompletedPages = Convert.ToString(reader["SelectedCompletedPages"]);
+                            _selectedTotalOfPages = Convert.ToString(reader["SelectedTotalOfPages"]);
+                            _selectedCompletionRate = Convert.ToDecimal(reader["SelectedCompletionRate"]);
+                            _TotalOfPagesHaveBeenRead = Convert.ToInt32(reader["TotalOfPagesRead"]);
+                            _TotalOfBooksRead = Convert.ToInt32(reader["TotalOfBooksRead"]);
+                            _selectedBarColor = Convert.ToString(reader["SelectedBarColor"]);
+                            circularProgressBar1.Value = Convert.ToInt32(reader["CircularProgressBarValue"]);
+                            circularProgressBar1.Text = Convert.ToString(reader["CircularProgressBarText"]);
+                        }
+                    }
+                    reader.Close();
+                    connection.Close();
+                }
+            }
+            _selectedBookName.Trim();
+            _selectedCompletedPages.Trim();
+            _selectedTotalOfPages.Trim();
+            ColorSelection(_selectedBarColor);
         }
 
-        private void LoadCircularProgressBarData()
+        public void SaveSelectedBookData()
         {
-            int value = Properties.Settings.Default.CircularProgressBarValue;
-            string text = Properties.Settings.Default.CircularProgressBarText;
-
-            circularProgressBar1.Value = value;
-            circularProgressBar1.Text = text;
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+            SqlCommand command = new SqlCommand("UPDATE StoredUserData SET SelectedBookId = @SelectedBookID,SelectedBookName = @SelectedBookName, SelectedCompletedPages = @SelectedCompletedPages," +
+                "SelectedTotalOfPages = @SelectedTotalOfPages,CircularProgressBarValue = @CircularProgressBarValue,CircularProgressBarText = @CircularProgressBarText,SelectedCompletionRate = @SelectedCompletionRate,AuthorOfSelectedBook = @AuthorOfSelectedBook,CategoryOfSelectedBook = @CategoryOfSelectedBook Where UserName = @UserName",connection);
+            command.Parameters.AddWithValue("@UserName", _userName);
+            command.Parameters.AddWithValue("@AuthorOfSelectedBook", _AuthorOfSelectedBook);
+            command.Parameters.AddWithValue("@CategoryOfSelectedBook", _CategoryOfSelectedBook);
+            command.Parameters.AddWithValue("@SelectedBookID", _selectedBookID);
+            command.Parameters.AddWithValue("@SelectedBookName", _selectedBookName);
+            command.Parameters.AddWithValue("@SelectedCompletedPages", _selectedCompletedPages);
+            command.Parameters.AddWithValue("@SelectedTotalOfPages", _selectedTotalOfPages);
+            command.Parameters.AddWithValue("@CircularProgressBarValue",circularProgressBar1.Value);
+            command.Parameters.AddWithValue("@CircularProgressBarText", circularProgressBar1.Text);
+            command.Parameters.AddWithValue("@SelectedCompletionRate", _selectedCompletionRate);
+            command.ExecuteNonQuery();
+            connection.Close();
         }
-
-        private void LoadSelectedBookData()
-        {
-            _selectedBookName = Properties.Settings.Default.SelectedBookName;
-            _selectedCompletedPages = Properties.Settings.Default.SelectedCompletedPages;
-            _selectedTotalOfPages = Properties.Settings.Default.SelectedTotalOfPages;
-            _selectedCompletionRate = Properties.Settings.Default.SelectedCompletionRate;
-            _TotalOfPagesHaveBeenRead = Properties.Settings.Default.TotalOfPagesRead;
-            _TotalOfBooksRead = Properties.Settings.Default.TotalOfBooksRead;
-            _SelectedBarColor = Properties.Settings.Default.SelectedBarColor;
-            ColorSelection(_SelectedBarColor);
-        }
-
-        public void SaveSelectedBookData(string selectedBookName,string selectedCompletedPages,string selectedTotalOfPages,decimal selectedCompletionRate,string categoryOfSelectedBook,string authorOfSelectedBook)
-        {
-            Properties.Settings.Default.SelectedBookName = selectedBookName;
-            Properties.Settings.Default.SelectedCompletedPages = selectedCompletedPages;
-            Properties.Settings.Default.SelectedTotalOfPages = selectedTotalOfPages;
-            Properties.Settings.Default.SelectedCompletionRate = selectedCompletionRate;
-            Properties.Settings.Default.CategoryOfSelectedBook = categoryOfSelectedBook;
-            Properties.Settings.Default.AuthorOfSelectedBook = authorOfSelectedBook;
-            Properties.Settings.Default.Save();
-        }
-
-
 
         private void ColorSelection(string color)
         {
-            switch (color)
+ 
+            switch (color.Trim())
             {
                 case "Red":
                     circularProgressBar1.ProgressColor = Color.Red;
