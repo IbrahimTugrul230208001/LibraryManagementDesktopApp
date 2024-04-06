@@ -150,14 +150,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Library.WebFormsUserInterface.exe" size="272352">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Library.WebFormsUserInterface.exe" size="271840">
       <assemblyIdentity name="Library.WebFormsUserInterface" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>JStb7oHOnUgffsPbLyilmssLcPX7Wfz4roAF2ufPuVs=</dsig:DigestValue>
+        <dsig:DigestValue>XGkTL0b/wvcguZne0JRcQx1W9epS+O563SMTN2rAuDo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
